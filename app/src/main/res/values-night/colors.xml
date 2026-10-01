@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_primary">#DAA520</color>
+    <color name="brand_on_primary">#201800</color>
+    <color name="brand_primary_container">#493B17</color>
+    <color name="brand_on_primary_container">#FAFAF9</color>
+    <color name="brand_secondary">#DAA520</color>
+    <color name="brand_on_secondary">#201800</color>
+    <color name="brand_selection">#99DAA520</color>
+</resources>

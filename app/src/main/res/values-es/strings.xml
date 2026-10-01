@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_name">Reproducción</string>
+
+    <string name="setup_title">Instala un motor de voz</string>
+    <string name="why_open_source">¿Por qué se instala un motor de voz aparte? CuevaReader está hecho solo con software libre y de código abierto. Creemos en los beneficios de la libertad de software: puedes usar, estudiar, compartir y mejorar cada parte, y nadie paga regalías ni licencias a nadie. Muchas apps podrían hacerse así con poco esfuerzo, pero la mayoría de ellas no se hacen así. Esperamos que esto te anime a crear y preferir usar alternativas de código abierto.</string>
+    <string name="setup_intro">CuevaReader lee libros en voz alta usando un motor de texto a voz libre y de código abierto. No viene incluido en la app, así que primero instala uno de estos:</string>
+    <string name="download">Descargar</string>
+    <string name="install_steps_title">Cómo instalarlo</string>
+    <string name="install_steps">1. Toca \"Descargar\" junto a un motor. Su página de F-Droid se abrirá en el navegador.\n2. Desplázate hacia abajo y toca \"Descargar APK\" en la versión más reciente (o instálalo con la app de F-Droid si la tienes).\n3. Abre el archivo descargado desde la notificación o desde tu carpeta de Descargas.\n4. Si Android lo pide, permite a tu navegador \"Instalar aplicaciones desconocidas\", vuelve y toca Instalar.\n5. Abre la app del motor una vez y descarga una voz para tu idioma (SherpaTTS y RHVoice lo necesitan).\n6. Vuelve a CuevaReader y toca el botón de abajo.</string>
+    <string name="check_again">Ya lo instalé, comprobar de nuevo</string>
+    <string name="google_option_intro">Si lo prefieres, puedes usar el motor de voz de Google de tu teléfono:</string>
+    <string name="use_google_for_now">Usar Google por ahora</string>
+    <string name="google_not_installed">Los Servicios de voz de Google no están instalados en este teléfono.</string>
+    <string name="setup_guide">Guía de configuración</string>
+
+    <string name="open_epub">Abrir EPUB</string>
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="light_mode">Modo claro</string>
+    <string name="library">Biblioteca</string>
+    <string name="get_books_button">¿Cómo consigo libros?</string>
+    <string name="get_books_title">Libros gratis para todos</string>
+    <string name="get_books_message">Miles de libros se pueden leer y compartir gratis, de forma legal. Proyectos como Project Gutenberg, mantenido por voluntarios, digitalizan obras de dominio público (clásicos cuyos derechos de autor ya expiraron) y las ofrecen sin costo, sin cuentas y sin DRM.\n\nOtras buenas fuentes son Standard Ebooks y Wikisource.\n\nPara añadir un libro:\n1. Descárgalo en formato EPUB (en Project Gutenberg elige \"EPUB3\").\n2. Mueve el archivo .epub a tu carpeta de biblioteca (por ejemplo Reader).\n3. Vuelve a abrir este panel y toca el libro.</string>
+    <string name="get_books_link">¡Saca los libros!</string>
+    <string name="get_books_hidden">Si comprar no es poseer, piratear no es robar.\nPor favor, piratea tus libros. \nhttp://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion</string>
+    <string name="close">Cerrar</string>
+    <string name="choose_folder">Elegir carpeta de biblioteca</string>
+    <string name="change_folder">Cambiar carpeta</string>
+    <string name="no_folder">Aún no has elegido una carpeta.</string>
+    <string name="folder_label">Carpeta: %1$s</string>
+    <string name="library_empty">Todavía no hay archivos EPUB aquí. Copia archivos .epub en esta carpeta y vuelve a abrir este panel.</string>
+    <string name="folder_help_title">Elige tu carpeta de biblioteca</string>
+    <string name="folder_help">CuevaReader muestra los libros EPUB guardados en la carpeta que elijas. Te sugerimos una carpeta llamada \"Reader\" en tu almacenamiento interno.\n\nEn la siguiente pantalla:\n1. Si no estás en la raíz del almacenamiento interno, abre el menú (☰) y elige el almacenamiento de tu teléfono.\n2. Toca ⋮ y elige \"Carpeta nueva\", llámala Reader (omite este paso si ya existe).\n3. Abre la carpeta Reader y toca \"Usar esta carpeta\" y luego \"Permitir\".\n\nPuedes cambiar la carpeta más tarde desde el panel Biblioteca.</string>
+    <string name="continue_label">Continuar</string>
+    <string name="later">Más tarde</string>
+    <string name="tts_settings">Ajustes de voz</string>
+    <string name="engine_label">Motor de voz: %1$s</string>
+    <string name="change_engine">Cambiar motor</string>
+    <string name="choose_engine">Elige un motor de voz</string>
+    <string name="open_source_suffix">%1$s (código abierto)</string>
+    <string name="no_book">No hay ningún libro abierto</string>
+    <string name="chapter_label">%1$s ▾</string>
+    <string name="progress_label">Capítulo %1$d de %2$d · %3$d%%</string>
+    <string name="chapters">Capítulos</string>
+
+    <string name="play">Reproducir</string>
+    <string name="pause">Pausar</string>
+    <string name="next_chapter">Capítulo siguiente</string>
+    <string name="previous_chapter">Capítulo anterior</string>
+    <string name="next_paragraph">Párrafo siguiente</string>
+    <string name="previous_paragraph">Párrafo anterior</string>
+
+    <string name="engine_sherpa_description">Voces neuronales de sonido natural (modelos Piper). Descarga un modelo de voz la primera vez que se abre.</string>
+    <string name="engine_rhvoice_description">Ligero y de buena calidad. Ábrelo después de instalarlo y descarga una voz.</string>
+    <string name="engine_espeak_description">Muy pequeño, admite muchos idiomas, voz robótica.</string>
+    <string name="error_engine_start">No se pudo iniciar %1$s. Ábrelo una vez para terminar su configuración.</string>
+    <string name="error_open_book">No se pudo abrir el libro: %1$s</string>
+    <string name="error_no_text">No se encontró texto legible en este EPUB</string>
+    <string name="untitled">Sin título</string>
+    <string name="chapter_number">Capítulo %1$d</string>
+    <string name="section">Sección</string>
+    <string name="start">Inicio</string>
+</resources>

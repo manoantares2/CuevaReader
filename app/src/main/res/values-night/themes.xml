@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ManuReader" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorOnPrimary">@color/brand_on_primary</item>
+        <item name="colorPrimaryContainer">@color/brand_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/brand_on_primary_container</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
+        <item name="colorOnSecondary">@color/brand_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/brand_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/night_text</item>
+        <item name="colorTertiary">@color/brand_secondary</item>
+        <item name="colorOnTertiary">@color/brand_on_secondary</item>
+        <item name="colorAccent">@color/brand_primary</item>
+        <item name="colorControlActivated">@color/brand_primary</item>
+        <item name="colorSurface">@color/night_surface</item>
+        <item name="colorSurfaceContainerLow">@color/night_surface_low</item>
+        <item name="colorSurfaceContainerHigh">@color/night_surface_high</item>
+        <item name="colorOnSurface">@color/night_text</item>
+        <item name="colorOnSurfaceVariant">@color/night_text</item>
+        <item name="android:colorBackground">@color/night_background</item>
+        <item name="colorOnBackground">@color/night_text</item>
+        <item name="android:windowBackground">@color/night_background</item>
+        <item name="android:textColorPrimary">@color/night_text</item>
+        <item name="android:textColorSecondary">@color/night_text</item>
+        <item name="android:colorAccent">@color/brand_primary</item>
+        <item name="android:textColorHighlight">@color/brand_selection</item>
+    </style>
+</resources>

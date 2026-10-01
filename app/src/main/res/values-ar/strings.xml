@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_name">التشغيل</string>
+
+    <string name="setup_title">ثبّت محرك صوت</string>
+    <string name="why_open_source">لماذا محرك صوت منفصل؟ صُنع CuevaReader باستخدام برمجيات حرة ومفتوحة المصدر فقط. نحن نؤمن بحرية البرمجيات: يمكنك استخدام كل جزء منه ودراسته ومشاركته وتحسينه، ولا يدفع أحد أي رسوم أو تراخيص لأحد. يمكن صنع كثير من التطبيقات بهذه الطريقة بجهد قليل، لكن معظمها لا يفعل. نأمل أن يشجعك هذا على تفضيل البدائل المفتوحة وصنعها أيضًا.</string>
+    <string name="setup_intro">يقرأ CuevaReader الكتب بصوت عالٍ باستخدام محرك حر ومفتوح المصدر لتحويل النص إلى كلام. هذا المحرك غير مضمّن في التطبيق، لذا يُرجى تثبيت أحد هذه المحركات أولًا:</string>
+    <string name="download">تنزيل</string>
+    <string name="install_steps_title">طريقة التثبيت</string>
+    <string name="install_steps">1. اضغط على \"تنزيل\" بجانب أحد المحركات. ستُفتح صفحته على F-Droid في المتصفح.\n2. مرّر للأسفل واضغط على \"تنزيل APK\" في أحدث إصدار (أو ثبّته عبر تطبيق F-Droid إن كان لديك).\n3. افتح الملف الذي تم تنزيله من الإشعار أو من مجلد التنزيلات.\n4. إذا طلب Android ذلك، اسمح للمتصفح بـ\"تثبيت التطبيقات غير المعروفة\"، ثم ارجع واضغط على تثبيت.\n5. افتح تطبيق المحرك مرة واحدة ونزّل صوتًا بلغتك (يحتاج SherpaTTS وRHVoice إلى ذلك).\n6. ارجع إلى CuevaReader واضغط على الزر أدناه.</string>
+    <string name="check_again">ثبّتُّه، تحقّق مرة أخرى</string>
+    <string name="google_option_intro">إذا كنت تفضّل ذلك، يمكنك استخدام محرك Google الصوتي على هاتفك:</string>
+    <string name="use_google_for_now">استخدام Google حاليًا</string>
+    <string name="google_not_installed">خدمات الكلام من Google غير مثبتة على هذا الهاتف.</string>
+    <string name="setup_guide">دليل الإعداد</string>
+
+    <string name="open_epub">فتح EPUB</string>
+    <string name="dark_mode">الوضع الداكن</string>
+    <string name="light_mode">الوضع الفاتح</string>
+    <string name="library">المكتبة</string>
+    <string name="get_books_button">كيف أحصل على الكتب؟</string>
+    <string name="get_books_title">كتب مجانية للجميع</string>
+    <string name="get_books_message">آلاف الكتب متاحة للقراءة والمشاركة مجانًا وبشكل قانوني. تقوم مشاريع مثل Project Gutenberg، الذي يديره متطوعون، برقمنة الأعمال التي أصبحت ملكًا عامًا (الكلاسيكيات التي انتهت حقوق نشرها) وتقدّمها دون مقابل، ودون حسابات، ودون DRM.\n\nمن المصادر الرائعة الأخرى Standard Ebooks وويكي مصدر.\n\nلإضافة كتاب:\n1. نزّله بصيغة EPUB (في Project Gutenberg اختر \"EPUB3\").\n2. انقل ملف ‎.epub إلى مجلد مكتبتك (مثل Reader).\n3. افتح هذه اللوحة مرة أخرى واضغط على الكتاب.</string>
+    <string name="get_books_link">كتب الآن!</string>
+    <string name="get_books_hidden">إذا كان الشراء لا يعني التملّك، فالقرصنة ليست سرقة.\nمن فضلك، قرصن كتبك.</string>
+    <string name="close">إغلاق</string>
+    <string name="choose_folder">اختيار مجلد المكتبة</string>
+    <string name="change_folder">تغيير المجلد</string>
+    <string name="no_folder">لم يتم اختيار مجلد بعد.</string>
+    <string name="folder_label">المجلد: %1$s</string>
+    <string name="library_empty">لا توجد ملفات EPUB هنا بعد. انسخ ملفات ‎.epub إلى هذا المجلد وافتح هذه اللوحة مرة أخرى.</string>
+    <string name="folder_help_title">اختر مجلد مكتبتك</string>
+    <string name="folder_help">يعرض CuevaReader كتب EPUB المحفوظة في مجلد من اختيارك. نقترح مجلدًا باسم \"Reader\" في وحدة التخزين الداخلية.\n\nفي الشاشة التالية:\n1. إذا لم تكن في جذر وحدة التخزين الداخلية، افتح القائمة (☰) واختر وحدة تخزين هاتفك.\n2. اضغط على ⋮ واختر \"مجلد جديد\"، وسمّه Reader (تخطَّ هذه الخطوة إن كان موجودًا).\n3. افتح مجلد Reader واضغط على \"استخدام هذا المجلد\" ثم \"السماح\".\n\nيمكنك تغيير المجلد لاحقًا من لوحة المكتبة.</string>
+    <string name="continue_label">متابعة</string>
+    <string name="later">لاحقًا</string>
+    <string name="tts_settings">إعدادات الصوت</string>
+    <string name="engine_label">محرك الصوت: %1$s</string>
+    <string name="change_engine">تغيير المحرك</string>
+    <string name="choose_engine">اختر محرك الصوت</string>
+    <string name="open_source_suffix">%1$s (مفتوح المصدر)</string>
+    <string name="no_book">لا يوجد كتاب مفتوح</string>
+    <string name="chapter_label">%1$s ▾</string>
+    <string name="progress_label">الفصل %1$d من %2$d · %3$d%%</string>
+    <string name="chapters">الفصول</string>
+
+    <string name="play">تشغيل</string>
+    <string name="pause">إيقاف مؤقت</string>
+    <string name="next_chapter">الفصل التالي</string>
+    <string name="previous_chapter">الفصل السابق</string>
+    <string name="next_paragraph">الفقرة التالية</string>
+    <string name="previous_paragraph">الفقرة السابقة</string>
+
+    <string name="engine_sherpa_description">أصوات عصبية طبيعية (نماذج Piper). ينزّل نموذج صوت عند فتحه لأول مرة.</string>
+    <string name="engine_rhvoice_description">خفيف وبجودة جيدة. افتحه بعد التثبيت ونزّل صوتًا.</string>
+    <string name="engine_espeak_description">صغير جدًا، يدعم لغات كثيرة، صوت آلي.</string>
+    <string name="error_engine_start">تعذّر تشغيل %1$s. افتحه مرة واحدة لإكمال إعداده.</string>
+    <string name="error_open_book">تعذّر فتح الكتاب: %1$s</string>
+    <string name="error_no_text">لم يتم العثور على نص قابل للقراءة في ملف EPUB هذا</string>
+    <string name="untitled">بدون عنوان</string>
+    <string name="chapter_number">الفصل %1$d</string>
+    <string name="section">قسم</string>
+    <string name="start">البداية</string>
+</resources>

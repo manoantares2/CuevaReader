@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CuevaReader</string>
+    <string name="channel_name">Playback</string>
+
+    <string name="setup_title">Install a voice engine</string>
+    <string name="why_open_source">Why a separate voice engine? CuevaReader is built only with free and open source software. We believe in software freedom: you can use, study, share and improve every part of it, and nobody pays royalties or license fees to anyone. Many apps could be built this way with little effort, but most don\'t. We hope this encourages you to prefer, and build, open alternatives too.</string>
+    <string name="setup_intro">CuevaReader reads books aloud using a free, open source text-to-speech engine. It is not bundled with the app, so please install one of these first:</string>
+    <string name="download">Download</string>
+    <string name="install_steps_title">How to install</string>
+    <string name="install_steps">1. Tap \"Download\" next to an engine. Its F-Droid page opens in your browser.\n2. Scroll down and tap \"Download APK\" on the latest version (or install it through the F-Droid app if you have it).\n3. Open the downloaded file from the notification or your Downloads folder.\n4. If Android asks, allow your browser to \"Install unknown apps\", then go back and tap Install.\n5. Open the engine app once and download a voice for your language (SherpaTTS and RHVoice need this).\n6. Come back to CuevaReader and tap the button below.</string>
+    <string name="check_again">I installed it, check again</string>
+    <string name="google_option_intro">If you prefer, you can use Google\'s engine on your phone:</string>
+    <string name="use_google_for_now">Use Google for now</string>
+    <string name="google_not_installed">Google Speech Services is not installed on this phone.</string>
+    <string name="setup_guide">Setup Guide</string>
+
+    <string name="open_epub">Open EPUB</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="light_mode">Light mode</string>
+    <string name="library">Library</string>
+    <string name="get_books_button">How do I get books?</string>
+    <string name="get_books_title">Free books for everyone</string>
+    <string name="get_books_message">Thousands of books are free to read and share, legally. Projects like Project Gutenberg, run by volunteers, digitize public domain works (classics whose copyright has expired) and offer them at no cost, with no accounts and no DRM.\n\nOther great sources are Standard Ebooks and Wikisource.\n\nTo add a book:\n1. Download it in EPUB format (on Project Gutenberg choose \"EPUB3\").\n2. Move the .epub file into your library folder (for example Reader).\n3. Open this panel again and tap the book.</string>
+    <string name="get_books_link">Get books nao!</string>
+    <string name="get_books_hidden">If buying isn\'t owning, pirating is not stealing.\nPlease pirate your books.</string>
+    <string name="close">Close</string>
+    <string name="choose_folder">Choose library folder</string>
+    <string name="change_folder">Change folder</string>
+    <string name="no_folder">No folder selected yet.</string>
+    <string name="folder_label">Folder: %1$s</string>
+    <string name="library_empty">No EPUB files here yet. Copy .epub files into this folder and reopen this panel.</string>
+    <string name="folder_help_title">Choose your library folder</string>
+    <string name="folder_help">CuevaReader lists the EPUB books stored in a folder of your choice. We suggest a folder called \"Reader\" in your internal storage.\n\nIn the next screen:\n1. If you are not in the internal storage root, open the menu (☰) and pick your phone\'s storage.\n2. Tap ⋮ and choose \"New folder\", name it Reader (skip this if it already exists).\n3. Open the Reader folder and tap \"Use this folder\", then \"Allow\".\n\nYou can change the folder later from the Library panel.</string>
+    <string name="continue_label">Continue</string>
+    <string name="later">Later</string>
+    <string name="tts_settings">Voice settings</string>
+    <string name="engine_label">Voice engine: %1$s</string>
+    <string name="change_engine">Change engine</string>
+    <string name="choose_engine">Choose voice engine</string>
+    <string name="open_source_suffix">%1$s (open source)</string>
+    <string name="no_book">No book open</string>
+    <string name="chapter_label">%1$s ▾</string>
+    <string name="progress_label">Chapter %1$d of %2$d · %3$d%%</string>
+    <string name="chapters">Chapters</string>
+
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="next_chapter">Next chapter</string>
+    <string name="previous_chapter">Previous chapter</string>
+    <string name="next_paragraph">Next paragraph</string>
+    <string name="previous_paragraph">Previous paragraph</string>
+
+    <string name="engine_sherpa_description">Natural sounding neural voices (Piper models). Downloads a voice model on first launch.</string>
+    <string name="engine_rhvoice_description">Lightweight with good quality. Open it after installing and download a voice.</string>
+    <string name="engine_espeak_description">Very small, supports many languages, robotic voice.</string>
+    <string name="error_engine_start">Could not start %1$s. Open it once to finish its setup.</string>
+    <string name="error_open_book">Could not open book: %1$s</string>
+    <string name="error_no_text">No readable text found in this EPUB</string>
+    <string name="untitled">Untitled</string>
+    <string name="chapter_number">Chapter %1$d</string>
+    <string name="section">Section</string>
+    <string name="start">Start</string>
+</resources>

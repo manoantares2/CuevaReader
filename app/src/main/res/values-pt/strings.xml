@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_name">Reprodução</string>
+
+    <string name="setup_title">Instale um mecanismo de voz</string>
+    <string name="why_open_source">Por que um mecanismo de voz separado? O CuevaReader é feito apenas com software livre e de código aberto. Acreditamos na liberdade de software: você pode usar, estudar, compartilhar e melhorar cada parte dele, e ninguém paga royalties ou licenças a ninguém. Muitos apps poderiam ser feitos assim com pouco esforço, mas a maioria não é. Esperamos que isso incentive você a preferir, e criar, alternativas abertas.</string>
+    <string name="setup_intro">O CuevaReader lê livros em voz alta usando um mecanismo de texto para fala livre e de código aberto. Ele não vem incluído no app, então instale um destes primeiro:</string>
+    <string name="download">Baixar</string>
+    <string name="install_steps_title">Como instalar</string>
+    <string name="install_steps">1. Toque em \"Baixar\" ao lado de um mecanismo. A página dele no F-Droid abrirá no navegador.\n2. Role para baixo e toque em \"Baixar APK\" na versão mais recente (ou instale pelo app do F-Droid, se você tiver).\n3. Abra o arquivo baixado pela notificação ou pela pasta Downloads.\n4. Se o Android pedir, permita que o navegador \"Instale apps desconhecidos\", volte e toque em Instalar.\n5. Abra o app do mecanismo uma vez e baixe uma voz para o seu idioma (SherpaTTS e RHVoice precisam disso).\n6. Volte ao CuevaReader e toque no botão abaixo.</string>
+    <string name="check_again">Já instalei, verificar novamente</string>
+    <string name="google_option_intro">Se preferir, você pode usar o mecanismo de voz do Google no seu telefone:</string>
+    <string name="use_google_for_now">Usar o Google por enquanto</string>
+    <string name="google_not_installed">Os Serviços de voz do Google não estão instalados neste telefone.</string>
+    <string name="setup_guide">Guia de configuração</string>
+
+    <string name="open_epub">Abrir EPUB</string>
+    <string name="dark_mode">Modo escuro</string>
+    <string name="light_mode">Modo claro</string>
+    <string name="library">Biblioteca</string>
+    <string name="get_books_button">Como consigo livros?</string>
+    <string name="get_books_title">Livros grátis para todos</string>
+    <string name="get_books_message">Milhares de livros podem ser lidos e compartilhados de graça, legalmente. Projetos como o Project Gutenberg, mantido por voluntários, digitalizam obras em domínio público (clássicos cujos direitos autorais já expiraram) e as oferecem sem custo, sem contas e sem DRM.\n\nOutras ótimas fontes são o Standard Ebooks e o Wikisource.\n\nPara adicionar um livro:\n1. Baixe-o no formato EPUB (no Project Gutenberg escolha \"EPUB3\").\n2. Mova o arquivo .epub para a sua pasta da biblioteca (por exemplo, Reader).\n3. Abra este painel novamente e toque no livro.</string>
+    <string name="get_books_link">Livros já!</string>
+    <string name="get_books_hidden">Se comprar não é possuir, piratear não é roubar.\nPor favor, pirateie seus livros.</string>
+    <string name="close">Fechar</string>
+    <string name="choose_folder">Escolher pasta da biblioteca</string>
+    <string name="change_folder">Trocar pasta</string>
+    <string name="no_folder">Nenhuma pasta selecionada ainda.</string>
+    <string name="folder_label">Pasta: %1$s</string>
+    <string name="library_empty">Ainda não há arquivos EPUB aqui. Copie arquivos .epub para esta pasta e abra este painel novamente.</string>
+    <string name="folder_help_title">Escolha a pasta da sua biblioteca</string>
+    <string name="folder_help">O CuevaReader mostra os livros EPUB guardados em uma pasta de sua escolha. Sugerimos uma pasta chamada \"Reader\" no armazenamento interno.\n\nNa próxima tela:\n1. Se você não estiver na raiz do armazenamento interno, abra o menu (☰) e escolha o armazenamento do seu telefone.\n2. Toque em ⋮ e escolha \"Nova pasta\", dê o nome Reader (pule esta etapa se ela já existir).\n3. Abra a pasta Reader e toque em \"Usar esta pasta\" e depois em \"Permitir\".\n\nVocê pode trocar a pasta depois no painel Biblioteca.</string>
+    <string name="continue_label">Continuar</string>
+    <string name="later">Mais tarde</string>
+    <string name="tts_settings">Configurações de voz</string>
+    <string name="engine_label">Mecanismo de voz: %1$s</string>
+    <string name="change_engine">Trocar mecanismo</string>
+    <string name="choose_engine">Escolha um mecanismo de voz</string>
+    <string name="open_source_suffix">%1$s (código aberto)</string>
+    <string name="no_book">Nenhum livro aberto</string>
+    <string name="chapter_label">%1$s ▾</string>
+    <string name="progress_label">Capítulo %1$d de %2$d · %3$d%%</string>
+    <string name="chapters">Capítulos</string>
+
+    <string name="play">Reproduzir</string>
+    <string name="pause">Pausar</string>
+    <string name="next_chapter">Próximo capítulo</string>
+    <string name="previous_chapter">Capítulo anterior</string>
+    <string name="next_paragraph">Próximo parágrafo</string>
+    <string name="previous_paragraph">Parágrafo anterior</string>
+
+    <string name="engine_sherpa_description">Vozes neurais com som natural (modelos Piper). Baixa um modelo de voz na primeira vez que é aberto.</string>
+    <string name="engine_rhvoice_description">Leve e com boa qualidade. Abra-o depois de instalar e baixe uma voz.</string>
+    <string name="engine_espeak_description">Muito pequeno, suporta vários idiomas, voz robótica.</string>
+    <string name="error_engine_start">Não foi possível iniciar %1$s. Abra-o uma vez para concluir a configuração.</string>
+    <string name="error_open_book">Não foi possível abrir o livro: %1$s</string>
+    <string name="error_no_text">Nenhum texto legível encontrado neste EPUB</string>
+    <string name="untitled">Sem título</string>
+    <string name="chapter_number">Capítulo %1$d</string>
+    <string name="section">Seção</string>
+    <string name="start">Início</string>
+</resources>
