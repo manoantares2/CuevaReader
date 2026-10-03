@@ -5,71 +5,89 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:visibility="gone">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="?attr/colorSurfaceContainerHigh"
-        android:lineSpacingMultiplier="1.2"
-        android:padding="12dp"
-        android:text="@string/why_open_source"
-        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/setup_title"
+        android:text="@string/flow_voice_title"
         android:textAppearance="?attr/textAppearanceHeadlineSmall" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/setup_intro"
+        android:text="@string/flow_voice_intro"
         android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-    <LinearLayout
-        android:id="@+id/engineList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/install_steps_title"
-        android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:lineSpacingMultiplier="1.2"
-        android:text="@string/install_steps"
-        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-    <Button
-        android:id="@+id/checkAgain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/check_again" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/google_option_intro"
-        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
+        android:text="@string/flow_steps_title"
+        android:textAppearance="?attr/textAppearanceTitleLarge" />
+    <TextView
+        android:id="@+id/recommendedEngine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="?attr/colorSurfaceContainerHigh"
+        android:padding="12dp"
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/flow_sherpa_requirement"
+        android:textAppearance="?attr/textAppearanceBodySmall" />
     <Button
-        android:id="@+id/useGoogle"
+        android:id="@+id/installVoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flow_install_voice" />
+    <Button
+        android:id="@+id/openVoiceEngine"
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/flow_open_voice" />
+    <Button
+        android:id="@+id/checkAgain"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flow_check_voice" />
+    <Button
+        android:id="@+id/otherVoices"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flow_other_voices" />
+    <LinearLayout
+        android:id="@+id/engineList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/voiceHelp"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flow_need_help" />
+    <Button
+        android:id="@+id/softwareFreedom"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flow_why_free" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/google_option_intro"
+        android:textAppearance="?attr/textAppearanceBodyMedium" />
+    <Button
+        android:id="@+id/useGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:minHeight="56dp"
         android:text="@string/use_google_for_now" />
 </LinearLayout>

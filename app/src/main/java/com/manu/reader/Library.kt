@@ -47,8 +47,11 @@ object Library {
                     val mime = cursor.getString(2)
                     if (mime == Document.MIME_TYPE_DIR) {
                         if (depth < MAX_DEPTH) walk(id, depth + 1)
-                    } else if (name.endsWith(".epub", ignoreCase = true) || mime == "application/epub+zip") {
-                        books += LibraryBook(name.substringBeforeLast('.'), DocumentsContract.buildDocumentUriUsingTree(tree, id))
+                    } else if (listOf(".epub", ".pdf", ".docx").any { name.endsWith(it, true) } ||
+                        mime in listOf(ImportViewModel.EPUB_MIME, "application/pdf", ImportViewModel.DOCX_MIME)
+                    ) {
+                        val label = if (name.endsWith(".epub", true)) name.substringBeforeLast('.') else name
+                        books += LibraryBook(label, DocumentsContract.buildDocumentUriUsingTree(tree, id))
                     }
                 }
             }

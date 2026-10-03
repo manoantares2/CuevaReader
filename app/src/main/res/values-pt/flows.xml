@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flow_voice_title">Dê-me uma voz</string>
+    <string name="flow_voice_intro">Escolha um mecanismo de voz para ouvir seus livros.</string>
+    <string name="flow_steps_title">Três passos para ler</string>
+    <string name="flow_recommended_voice">%1$s · Recomendado\nVozes naturais, livre e de código aberto.</string>
+    <string name="flow_sherpa_requirement">Requer conhecimento de inglês.</string>
+    <string name="flow_install_voice">1 · Instalar mecanismo de voz</string>
+    <string name="flow_open_voice">2 · Abrir mecanismo e escolher voz</string>
+    <string name="flow_check_voice">3 · Verificar instalação</string>
+    <string name="flow_other_voices">Outras vozes</string>
+    <string name="flow_need_help">Preciso de ajuda</string>
+    <string name="flow_why_free">Por que instalar um mecanismo separado?</string>
+    <string name="flow_library_title">Um lugar para seus livros</string>
+    <string name="flow_library_intro">Escolha uma pasta para encontrar seus livros aqui. Você pode criar uma chamada Reader.</string>
+    <string name="flow_books_title">Leituras grátis</string>
+    <string name="flow_books_intro">Encontre sua próxima leitura. Baixe um EPUB e abra-o com o CuevaReader.</string>
+    <string name="flow_find_books">Livros grátis em português</string>
+    <string name="flow_search_by_title">Buscar por título</string>
+    <string name="flow_search_title_dialog">Buscar um livro pelo título</string>
+    <string name="flow_search_title_hint">Título do livro</string>
+    <string name="flow_why_books_free">Por que são grátis?</string>
+    <string name="flow_document_intro">Abra um documento e ouça\nEPUB · PDF · DOCX\nSomente o texto, sem imagens.</string>
+</resources>

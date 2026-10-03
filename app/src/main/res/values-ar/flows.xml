@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flow_voice_title">أعطني صوتًا</string>
+    <string name="flow_voice_intro">اختر محرك صوت للاستماع إلى كتبك.</string>
+    <string name="flow_steps_title">ثلاث خطوات للقراءة</string>
+    <string name="flow_recommended_voice">%1$s · موصى به\nأصوات طبيعية، حر ومفتوح المصدر.</string>
+    <string name="flow_sherpa_requirement">يتطلب معرفة اللغة الإنجليزية.</string>
+    <string name="flow_install_voice">1 · تثبيت محرك صوت</string>
+    <string name="flow_open_voice">2 · فتح المحرك واختيار صوت</string>
+    <string name="flow_check_voice">3 · التحقق من التثبيت</string>
+    <string name="flow_other_voices">أصوات أخرى</string>
+    <string name="flow_need_help">أحتاج إلى مساعدة</string>
+    <string name="flow_why_free">لماذا تثبيت محرك منفصل؟</string>
+    <string name="flow_library_title">مكان لكتبك</string>
+    <string name="flow_library_intro">اختر مجلدًا لتجد كتبك هنا. يمكنك إنشاء مجلد باسم Reader.</string>
+    <string name="flow_books_title">قراءات مجانية</string>
+    <string name="flow_books_intro">ابحث عن كتابك التالي. يُحوّل PDF النصي إلى EPUB، أما صفحات الصور فتحتاج إلى التعرّف على النص، وهو غير متاح في التطبيق.</string>
+    <string name="flow_find_books">كتب مجانية باللغة العربية</string>
+    <string name="flow_search_by_title">البحث حسب العنوان</string>
+    <string name="flow_search_title_dialog">البحث عن كتاب بعنوانه</string>
+    <string name="flow_search_title_hint">عنوان الكتاب</string>
+    <string name="flow_why_books_free">لماذا هي مجانية؟</string>
+    <string name="flow_document_intro">افتح مستندًا واستمع إليه\nEPUB · PDF · DOCX\nالنص فقط، دون صور.</string>
+</resources>
