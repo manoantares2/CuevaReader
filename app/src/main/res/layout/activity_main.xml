@@ -54,14 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/open_epub" />
-
-                <Button
-                    android:id="@+id/ttsSettings"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/tts_settings" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,6 +101,21 @@
                 android:text="@string/no_book"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall" />
 
+            <Button
+                android:id="@+id/mainGetBooksHelp"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/get_books_button"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodySmall" />
+
             <TextView
                 android:id="@+id/chapterTitle"
                 android:layout_width="match_parent"
@@ -119,12 +126,6 @@
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorPrimary"
                 android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/progressText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceBodySmall" />
 
             <LinearLayout
                 android:id="@+id/controls"

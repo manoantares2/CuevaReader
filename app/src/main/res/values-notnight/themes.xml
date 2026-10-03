@@ -6,24 +6,10 @@
         <item name="colorPrimaryContainer">@color/brand_primary_container</item>
         <item name="colorOnPrimaryContainer">@color/brand_on_primary_container</item>
         <item name="colorSecondary">@color/brand_secondary</item>
-        <item name="colorOnSecondary">@color/brand_on_secondary</item>
         <item name="colorTertiary">@color/brand_secondary</item>
         <item name="colorAccent">@color/brand_primary</item>
         <item name="colorControlActivated">@color/brand_primary</item>
         <item name="android:colorAccent">@color/brand_primary</item>
         <item name="android:textColorHighlight">@color/brand_selection</item>
-        <item name="android:windowBackground">@color/night_background</item>
     </style>
-
-    <style name="ControlButton" parent="Widget.AppCompat.ImageButton">
-        <item name="android:layout_width">56dp</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:layout_marginHorizontal">4dp</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:padding">10dp</item>
-        <item name="tint">?attr/colorPrimary</item>
-    </style>
-
-    <color name="launcher_background">#3F51B5</color>
 </resources>
