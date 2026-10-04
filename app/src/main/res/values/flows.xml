@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flow_voice_title">Give me a voice</string>
+    <string name="flow_voice_intro">Choose a voice engine to listen to your books.</string>
+    <string name="flow_steps_title">Three steps to read</string>
+    <string name="flow_recommended_voice">%1$s · Recommended\nNatural voices, free and open source.</string>
+    <string name="flow_sherpa_requirement">Requires knowing English.</string>
+    <string name="flow_install_voice">1 · Install voice engine</string>
+    <string name="flow_open_voice">2 · Open engine and choose a voice</string>
+    <string name="flow_check_voice">3 · Check installation</string>
+    <string name="flow_other_voices">Other voices</string>
+    <string name="flow_need_help">I need help</string>
+    <string name="flow_why_free">Why install a separate engine?</string>
+    <string name="flow_library_title">A place for your books</string>
+    <string name="flow_library_intro">Choose a folder to find your books here. You can create one called Reader.</string>
+    <string name="flow_books_title">Free reads</string>
+    <string name="flow_books_intro">Find your next book. Download an EPUB, then open it with CuevaReader.</string>
+    <string name="flow_find_books">Free books in English</string>
+    <string name="flow_search_by_title">Search by title</string>
+    <string name="flow_search_title_dialog">Search for a book title</string>
+    <string name="flow_search_title_hint">Book title</string>
+    <string name="flow_why_books_free">Why are they free?</string>
+    <string name="flow_document_intro">Open a document and listen\nEPUB · PDF · DOCX\nText only, no images or OCR.</string>
+</resources>
