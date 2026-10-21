@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="library_move_title">Move to your library?</string>
+    <string name="library_move_message">Move this file to %1$s? If Android does not allow deleting the original, a copy will be saved instead. PDF and DOCX files will still be converted to EPUB for reading.</string>
+    <string name="library_move_accept">Move to library</string>
+    <string name="library_move_skip">Open without moving</string>
+    <string name="library_move_done">File moved to your library.</string>
+    <string name="library_move_copied">Copy saved to your library. Android did not allow deleting the original.</string>
+    <string name="library_move_failed">Could not move the file. Opening the original instead.</string>
+    <string name="search_provider">Search engine</string>
+    <string name="search_duckduckgo_preferred">DuckDuckGo (preferred)</string>
+    <string name="search_google">Google</string>
+    <string name="search_ciudad_seva">Ciudad Seva</string>
     <string name="flow_voice_title">Give me a voice</string>
     <string name="flow_voice_intro">Choose a voice engine to listen to your books.</string>
     <string name="flow_steps_title">Three steps to read</string>

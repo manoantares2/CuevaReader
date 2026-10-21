@@ -30,6 +30,7 @@ import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import android.view.animation.DecelerateInterpolator
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     private var stateJob: Job? = null
     // Picker results arrive before the service rebinds, so the choice is held until then.
     private var pendingBook: Uri? = null
+    private var libraryMoveDialog: AlertDialog? = null
     private val importer by lazy { ViewModelProvider(this)[ImportViewModel::class.java] }
 
     private lateinit var setupSection: View
@@ -237,6 +239,24 @@ class MainActivity : AppCompatActivity() {
                 importer.state.collect { state ->
                     service?.state?.value?.let(::render)
                     when (state) {
+                        is ImportViewModel.State.NeedsLibraryMove -> if (libraryMoveDialog == null) {
+                            libraryMoveDialog = AlertDialog.Builder(this@MainActivity)
+                                .setTitle(R.string.library_move_title)
+                                .setMessage(getString(R.string.library_move_message, Library.folderName(state.folder)))
+                                .setPositiveButton(R.string.library_move_accept) { _, _ -> importer.answerLibraryMove(true) }
+                                .setNegativeButton(R.string.library_move_skip) { _, _ -> importer.answerLibraryMove(false) }
+                                .setOnCancelListener { importer.answerLibraryMove(false) }
+                                .create().also { dialog ->
+                                    dialog.setOnDismissListener { libraryMoveDialog = null }
+                                    dialog.show()
+                                }
+                        }
+                        is ImportViewModel.State.LibraryMoveFinished -> {
+                            Toast.makeText(this@MainActivity, state.message, Toast.LENGTH_LONG).show()
+                            refreshLibrary()
+                            importer.acknowledge()
+                            importer.open(state.uri)
+                        }
                         is ImportViewModel.State.Done -> {
                             loadEpub(state.uri)
                             if (state.converted) {
@@ -291,7 +311,8 @@ class MainActivity : AppCompatActivity() {
         ) {
             runCatching { contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
         }
-        openBook(uri)
+        service?.pause()
+        importer.openExternal(uri)
     }
 
     override fun onStart() {
@@ -479,9 +500,23 @@ class MainActivity : AppCompatActivity() {
             setSingleLine(true)
         }
         val padding = (24 * resources.displayMetrics.density).toInt()
+        val provider = Spinner(this, Spinner.MODE_DROPDOWN).apply {
+            adapter = BookSearchProviderAdapter(this@MainActivity)
+            contentDescription = getString(R.string.search_provider)
+            setSelection(0)
+        }
+        val content = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = android.view.Gravity.CENTER_VERTICAL
+            setPadding(padding, 0, padding, 0)
+            addView(input, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
+            addView(provider, LinearLayout.LayoutParams(
+                (96 * resources.displayMetrics.density).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT,
+            ))
+        }
         val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.flow_search_title_dialog)
-            .setView(input, padding, 0, padding, 0)
+            .setView(content)
             .setPositiveButton(R.string.flow_search_by_title, null)
             .setNegativeButton(R.string.close, null)
             .create()
@@ -492,11 +527,8 @@ class MainActivity : AppCompatActivity() {
                     input.error = getString(R.string.flow_search_title_hint)
                     return@setOnClickListener
                 }
-                val query = "\"$title\" filetype:pdf"
-                val uri = Uri.parse("https://www.google.com/search")
-                    .buildUpon()
-                    .appendQueryParameter("q", query)
-                    .build()
+                val selected = provider.selectedItem as BookSearchProvider
+                val uri = selected.searchUri(title)
                 runCatching { CustomTabsIntent.Builder().build().launchUrl(this, uri) }
                     .onFailure { openUrl(uri.toString()) }
                 dialog.dismiss()

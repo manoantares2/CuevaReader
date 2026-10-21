@@ -10,8 +10,8 @@ android {
         applicationId = "com.manu.reader"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "QA-v1.3-pre"
+        versionCode = 3
+        versionName = "QA-v1.4-pre"
     }
 
     buildTypes {

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="library_move_title">نقل إلى مكتبتك؟</string>
+    <string name="library_move_message">هل تريد نقل هذا الملف إلى %1$s؟ إذا لم يسمح Android بحذف الأصل، فسيتم حفظ نسخة. ستظل ملفات PDF وDOCX تُحوّل إلى EPUB للقراءة.</string>
+    <string name="library_move_accept">نقل إلى المكتبة</string>
+    <string name="library_move_skip">فتح دون نقل</string>
+    <string name="library_move_done">تم نقل الملف إلى مكتبتك.</string>
+    <string name="library_move_copied">تم حفظ نسخة في المكتبة. لم يسمح Android بحذف الأصل.</string>
+    <string name="library_move_failed">تعذر نقل الملف. سيتم فتح الأصل.</string>
+    <string name="search_provider">محرك البحث</string>
+    <string name="search_duckduckgo_preferred">DuckDuckGo (المفضل)</string>
+    <string name="search_google">Google</string>
+    <string name="search_ciudad_seva">Ciudad Seva</string>
     <string name="flow_voice_title">أعطني صوتًا</string>
     <string name="flow_voice_intro">اختر محرك صوت للاستماع إلى كتبك.</string>
     <string name="flow_steps_title">ثلاث خطوات للقراءة</string>

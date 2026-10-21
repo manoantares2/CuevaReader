@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="library_move_title">Mover para sua biblioteca?</string>
+    <string name="library_move_message">Mover este arquivo para %1$s? Se o Android não permitir excluir o original, uma cópia será salva. PDF e DOCX continuarão sendo convertidos para EPUB para leitura.</string>
+    <string name="library_move_accept">Mover para a biblioteca</string>
+    <string name="library_move_skip">Abrir sem mover</string>
+    <string name="library_move_done">Arquivo movido para sua biblioteca.</string>
+    <string name="library_move_copied">Cópia salva na biblioteca. O Android não permitiu excluir o original.</string>
+    <string name="library_move_failed">Não foi possível mover o arquivo. O original será aberto.</string>
+    <string name="search_provider">Mecanismo de busca</string>
+    <string name="search_duckduckgo_preferred">DuckDuckGo (preferido)</string>
+    <string name="search_google">Google</string>
+    <string name="search_ciudad_seva">Ciudad Seva</string>
     <string name="flow_voice_title">Dê-me uma voz</string>
     <string name="flow_voice_intro">Escolha um mecanismo de voz para ouvir seus livros.</string>
     <string name="flow_steps_title">Três passos para ler</string>

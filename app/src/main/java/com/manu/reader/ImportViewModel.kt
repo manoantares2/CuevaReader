@@ -22,6 +22,8 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
     sealed interface State {
         data object Idle : State
         data object Busy : State
+        data class NeedsLibraryMove(val source: Uri, val folder: Uri) : State
+        data class LibraryMoveFinished(val uri: Uri, val message: Int) : State
         data class NeedsDestination(val file: File, val name: String, val source: Uri) : State
         data class Done(val uri: Uri, val converted: Boolean) : State
         data class Failed(val message: String) : State
@@ -46,7 +48,8 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun open(uri: Uri) {
-        if (mutableState.value == State.Busy || mutableState.value is State.NeedsDestination) return
+        if (mutableState.value == State.Busy || mutableState.value is State.NeedsDestination ||
+            mutableState.value is State.NeedsLibraryMove) return
         mutableState.value = State.Busy
         viewModelScope.launch {
             try {
@@ -55,6 +58,43 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                 throw e
             } catch (e: Exception) {
                 mutableState.value = State.Failed(context.getString(R.string.conversion_failed, e.message.orEmpty()))
+            }
+        }
+    }
+
+    fun openExternal(uri: Uri) {
+        if (mutableState.value != State.Idle) return
+        mutableState.value = State.Busy
+        viewModelScope.launch {
+            val folder = withContext(Dispatchers.IO) {
+                Library.writableFolder(context)?.takeUnless { Library.contains(context, it, uri) }
+            }
+            if (folder == null) {
+                acknowledge()
+                open(uri)
+            } else {
+                mutableState.value = State.NeedsLibraryMove(uri, folder)
+            }
+        }
+    }
+
+    fun answerLibraryMove(move: Boolean) {
+        val pending = mutableState.value as? State.NeedsLibraryMove ?: return
+        if (!move) {
+            acknowledge()
+            open(pending.source)
+            return
+        }
+        mutableState.value = State.Busy
+        viewModelScope.launch {
+            try {
+                val result = withContext(Dispatchers.IO) { Library.moveInto(context, pending.source, pending.folder) }
+                mutableState.value = State.LibraryMoveFinished(result.uri,
+                    if (result.originalDeleted) R.string.library_move_done else R.string.library_move_copied)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (_: Exception) {
+                mutableState.value = State.LibraryMoveFinished(pending.source, R.string.library_move_failed)
             }
         }
     }

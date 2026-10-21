@@ -27,6 +27,72 @@ object Library {
 
     fun setFolder(context: Context, tree: Uri) = prefs(context).edit { putString(KEY_FOLDER, tree.toString()) }
 
+    // Unlike folder(), this also checks the provider: a persisted grant can outlive the folder.
+    fun writableFolder(context: Context): Uri? = folder(context)?.takeIf { tree ->
+        context.contentResolver.persistedUriPermissions.any { it.uri == tree && it.isWritePermission } &&
+            runCatching {
+                val root = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+                context.contentResolver.query(root, arrayOf(Document.COLUMN_FLAGS), null, null, null)?.use {
+                    it.moveToFirst() && it.getInt(0) and Document.FLAG_DIR_SUPPORTS_CREATE != 0
+                } == true
+            }.getOrDefault(false)
+    }
+
+    fun contains(context: Context, tree: Uri, source: Uri): Boolean = runCatching {
+        if (tree.authority != source.authority) return@runCatching false
+        val root = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+        DocumentsContract.getDocumentId(root) == DocumentsContract.getDocumentId(source) ||
+            DocumentsContract.isChildDocument(context.contentResolver, root, source)
+    }.getOrDefault(false)
+
+    data class Transfer(val uri: Uri, val originalDeleted: Boolean)
+
+    // Copy first, close both streams, and only then ask the source provider to delete.
+    fun moveInto(context: Context, source: Uri, tree: Uri): Transfer {
+        check(writableFolder(context) == tree) { context.getString(R.string.library_move_failed) }
+        val resolver = context.contentResolver
+        var name = source.lastPathSegment ?: "document"
+        resolver.query(source, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
+            if (it.moveToFirst()) name = it.getString(0) ?: name
+        }
+        val mime = resolver.getType(source) ?: when (name.substringAfterLast('.').lowercase()) {
+            "epub" -> ImportViewModel.EPUB_MIME
+            "pdf" -> "application/pdf"
+            "docx" -> ImportViewModel.DOCX_MIME
+            else -> "application/octet-stream"
+        }
+        val parent = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+        val children = DocumentsContract.buildChildDocumentsUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+        val names = mutableSetOf<String>()
+        resolver.query(children, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
+            while (it.moveToNext()) names += it.getString(0).orEmpty()
+        } ?: error(context.getString(R.string.library_move_failed))
+        val candidate = uniqueName(name, names)
+        val target = DocumentsContract.createDocument(resolver, parent, mime, candidate)
+            ?: error(context.getString(R.string.library_move_failed))
+        try {
+            resolver.openInputStream(source)?.use { input ->
+                resolver.openOutputStream(target, "w")?.use { output -> input.copyTo(output) }
+                    ?: error(context.getString(R.string.conversion_cannot_save))
+            } ?: error(context.getString(R.string.conversion_cannot_read))
+        } catch (e: Exception) {
+            runCatching { DocumentsContract.deleteDocument(resolver, target) }
+            throw e
+        }
+        val deleted = runCatching { DocumentsContract.deleteDocument(resolver, source) }.getOrDefault(false)
+        return Transfer(target, deleted)
+    }
+
+    internal fun uniqueName(name: String, names: Set<String>): String {
+        val extension = name.substringAfterLast('.', "")
+        val stem = if (extension.isEmpty()) name else name.substringBeforeLast('.')
+        val suffix = if (extension.isEmpty()) "" else ".$extension"
+        var candidate = name
+        var number = 2
+        while (candidate in names) candidate = "$stem (${number++})$suffix"
+        return candidate
+    }
+
     fun wasPrompted(context: Context) = prefs(context).getBoolean(KEY_PROMPTED, false)
 
     fun markPrompted(context: Context) = prefs(context).edit { putBoolean(KEY_PROMPTED, true) }
