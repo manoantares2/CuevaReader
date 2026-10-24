@@ -11,7 +11,9 @@
     <string name="search_duckduckgo_preferred">DuckDuckGo (preferido)</string>
     <string name="search_google">Google</string>
     <string name="search_ciudad_seva">Ciudad Seva</string>
-    <string name="flow_voice_title">Dame una voz</string>
+    <string name="flow_voice_title">Dame una voz, hay dos opciones</string>
+    <string name="flow_install_free_voice">Instala una nueva voz gratuita</string>
+    <string name="flow_install_free_voice_hint">Requiere instalar otra app</string>
     <string name="flow_voice_intro">Elige un motor de voz para escuchar tus libros.</string>
     <string name="flow_steps_title">Tres pasos para leer</string>
     <string name="flow_recommended_voice">%1$s · Recomendado\nVoces naturales, libre y de código abierto.</string>

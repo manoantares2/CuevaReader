@@ -49,38 +49,47 @@ object Library {
 
     // Copy first, close both streams, and only then ask the source provider to delete.
     fun moveInto(context: Context, source: Uri, tree: Uri): Transfer {
-        check(writableFolder(context) == tree) { context.getString(R.string.library_move_failed) }
         val resolver = context.contentResolver
-        var name = source.lastPathSegment ?: "document"
-        resolver.query(source, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
-            if (it.moveToFirst()) name = it.getString(0) ?: name
-        }
-        val mime = resolver.getType(source) ?: when (name.substringAfterLast('.').lowercase()) {
-            "epub" -> ImportViewModel.EPUB_MIME
-            "pdf" -> "application/pdf"
-            "docx" -> ImportViewModel.DOCX_MIME
-            else -> "application/octet-stream"
-        }
-        val parent = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
-        val children = DocumentsContract.buildChildDocumentsUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
-        val names = mutableSetOf<String>()
-        resolver.query(children, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
-            while (it.moveToNext()) names += it.getString(0).orEmpty()
-        } ?: error(context.getString(R.string.library_move_failed))
-        val candidate = uniqueName(name, names)
-        val target = DocumentsContract.createDocument(resolver, parent, mime, candidate)
-            ?: error(context.getString(R.string.library_move_failed))
+        var stage = "check library folder"
+        var target: Uri? = null
         try {
+            check(writableFolder(context) == tree) { "Library folder is missing or not writable: $tree" }
+            stage = "read source name"
+            var name = source.lastPathSegment ?: "document"
+            resolver.query(source, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
+                if (it.moveToFirst()) name = it.getString(0) ?: name
+            }
+            stage = "read source type"
+            val mime = resolver.getType(source) ?: when (name.substringAfterLast('.').lowercase()) {
+                "epub" -> ImportViewModel.EPUB_MIME
+                "pdf" -> "application/pdf"
+                "docx" -> ImportViewModel.DOCX_MIME
+                else -> "application/octet-stream"
+            }
+            stage = "list library folder"
+            val parent = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+            val children = DocumentsContract.buildChildDocumentsUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+            val names = mutableSetOf<String>()
+            resolver.query(children, arrayOf(Document.COLUMN_DISPLAY_NAME), null, null, null)?.use {
+                while (it.moveToNext()) names += it.getString(0).orEmpty()
+            } ?: error("Library folder query returned no cursor")
+            val candidate = uniqueName(name, names)
+            stage = "create '$candidate' ($mime)"
+            target = DocumentsContract.createDocument(resolver, parent, mime, candidate)
+                ?: error("Provider refused to create the document")
+            stage = "copy contents"
             resolver.openInputStream(source)?.use { input ->
                 resolver.openOutputStream(target, "w")?.use { output -> input.copyTo(output) }
-                    ?: error(context.getString(R.string.conversion_cannot_save))
-            } ?: error(context.getString(R.string.conversion_cannot_read))
+                    ?: error("Cannot open the library copy for writing")
+            } ?: error("Cannot open the source for reading")
         } catch (e: Exception) {
-            runCatching { DocumentsContract.deleteDocument(resolver, target) }
-            throw e
+            target?.let { runCatching { DocumentsContract.deleteDocument(resolver, it) } }
+            throw IngestionException(stage, e)
         }
-        val deleted = runCatching { DocumentsContract.deleteDocument(resolver, source) }.getOrDefault(false)
-        return Transfer(target, deleted)
+        val deleted = runCatching { DocumentsContract.deleteDocument(resolver, source) }
+            .onFailure { IngestionLog.warn(context, "move to library", source, "Original kept: ${it.javaClass.simpleName}: ${it.message}") }
+            .getOrDefault(false)
+        return Transfer(target!!, deleted)
     }
 
     internal fun uniqueName(name: String, names: Set<String>): String {

@@ -11,7 +11,9 @@
     <string name="search_duckduckgo_preferred">DuckDuckGo (المفضل)</string>
     <string name="search_google">Google</string>
     <string name="search_ciudad_seva">Ciudad Seva</string>
-    <string name="flow_voice_title">أعطني صوتًا</string>
+    <string name="flow_voice_title">أعطني صوتًا، هناك خياران</string>
+    <string name="flow_install_free_voice">ثبّت صوتًا مجانيًا جديدًا</string>
+    <string name="flow_install_free_voice_hint">يتطلب تثبيت تطبيق آخر</string>
     <string name="flow_voice_intro">اختر محرك صوت للاستماع إلى كتبك.</string>
     <string name="flow_steps_title">ثلاث خطوات للقراءة</string>
     <string name="flow_recommended_voice">%1$s · موصى به\nأصوات طبيعية، حر ومفتوح المصدر.</string>

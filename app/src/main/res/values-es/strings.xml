@@ -9,8 +9,8 @@
     <string name="install_steps_title">Cómo instalarlo</string>
     <string name="install_steps">1. Toca \"Descargar\" junto a un motor. Su página de F-Droid se abrirá en el navegador.\n2. Desplázate hacia abajo y toca \"Descargar APK\" en la versión más reciente (o instálalo con la app de F-Droid si la tienes).\n3. Abre el archivo descargado desde la notificación o desde tu carpeta de Descargas.\n4. Si Android lo pide, permite a tu navegador \"Instalar aplicaciones desconocidas\", vuelve y toca Instalar.\n5. Abre la app del motor una vez y descarga una voz para tu idioma (SherpaTTS y RHVoice lo necesitan).\n6. Vuelve a CuevaReader y toca el botón de abajo.</string>
     <string name="check_again">Ya lo instalé, comprobar de nuevo</string>
-    <string name="google_option_intro">Si lo prefieres, puedes usar el motor de voz de Google de tu teléfono:</string>
-    <string name="use_google_for_now">Usar Google por ahora</string>
+    <string name="google_option_intro">Usar software de Google en mi teléfono por ahora</string>
+    <string name="use_google_for_now">No instalar nada</string>
     <string name="google_not_installed">Los Servicios de voz de Google no están instalados en este teléfono.</string>
     <string name="setup_guide">Guía para añadir voces</string>
 

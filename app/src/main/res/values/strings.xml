@@ -10,8 +10,8 @@
     <string name="install_steps_title">How to install</string>
     <string name="install_steps">1. Tap \"Download\" next to an engine. Its F-Droid page opens in your browser.\n2. Scroll down and tap \"Download APK\" on the latest version (or install it through the F-Droid app if you have it).\n3. Open the downloaded file from the notification or your Downloads folder.\n4. If Android asks, allow your browser to \"Install unknown apps\", then go back and tap Install.\n5. Open the engine app once and download a voice for your language (SherpaTTS and RHVoice need this).\n6. Come back to CuevaReader and tap the button below.</string>
     <string name="check_again">I installed it, check again</string>
-    <string name="google_option_intro">If you prefer, you can use Google\'s engine on your phone:</string>
-    <string name="use_google_for_now">Use Google for now</string>
+    <string name="google_option_intro">Use Google software on my phone for now</string>
+    <string name="use_google_for_now">Don\'t install anything</string>
     <string name="google_not_installed">Google Speech Services is not installed on this phone.</string>
     <string name="setup_guide">Guide to adding voices</string>
 

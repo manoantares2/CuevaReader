@@ -12,7 +12,8 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
-data class ConvertedSection(val title: String, val paragraphs: List<String>)
+// showHeading = false keeps the title for navigation only, so synthetic labels like "Page 3" are not read aloud.
+data class ConvertedSection(val title: String, val paragraphs: List<String>, val showHeading: Boolean = true)
 
 object EpubWriter {
     private const val MAX_XML_BYTES = 20 * 1024 * 1024
@@ -88,7 +89,8 @@ object EpubWriter {
             entry("OEBPS/nav.xhtml", """<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>${escape(title)}</title></head><body><nav epub:type="toc"><ol>$links</ol></nav></body></html>""")
             for ((i, section) in sections.withIndex()) {
                 val paragraphs = section.paragraphs.joinToString("") { "<p>${escape(it)}</p>" }
-                entry("OEBPS/section$i.xhtml", """<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${escape(language)}"><head><title>${escape(labels[i])}</title></head><body><h1>${escape(labels[i])}</h1>$paragraphs</body></html>""")
+                val heading = if (section.showHeading) "<h1>${escape(labels[i])}</h1>" else ""
+                entry("OEBPS/section$i.xhtml", """<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${escape(language)}"><head><title>${escape(labels[i])}</title></head><body>$heading$paragraphs</body></html>""")
             }
         }
     }

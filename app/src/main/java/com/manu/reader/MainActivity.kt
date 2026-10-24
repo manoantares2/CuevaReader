@@ -365,6 +365,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindSetupGuide(view: View, onSetupComplete: () -> Unit = {}) {
+        val installSteps = view.findViewById<View>(R.id.installSteps)
+        view.findViewById<Button>(R.id.showInstallSteps).setOnClickListener {
+            installSteps.isVisible = !installSteps.isVisible
+        }
         val engineList = view.findViewById<LinearLayout>(R.id.engineList)
         val recommended = TtsEngines.recommended.first()
         view.findViewById<TextView>(R.id.recommendedEngine).text =
@@ -412,7 +416,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSetupGuide() {
-        val guide = LayoutInflater.from(this).inflate(R.layout.setup_guide, null).apply { isVisible = true }
+        val guide = LayoutInflater.from(this).inflate(R.layout.setup_guide, null).apply {
+            isVisible = true
+            findViewById<View>(R.id.installSteps).isVisible = true
+        }
         val dialog = AlertDialog.Builder(this)
             .setView(ScrollView(this).apply {
                 val padding = (16 * resources.displayMetrics.density).toInt()
