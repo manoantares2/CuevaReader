@@ -9,8 +9,8 @@
     <string name="install_steps_title">طريقة التثبيت</string>
     <string name="install_steps">1. اضغط على \"تنزيل\" بجانب أحد المحركات. ستُفتح صفحته على F-Droid في المتصفح.\n2. مرّر للأسفل واضغط على \"تنزيل APK\" في أحدث إصدار (أو ثبّته عبر تطبيق F-Droid إن كان لديك).\n3. افتح الملف الذي تم تنزيله من الإشعار أو من مجلد التنزيلات.\n4. إذا طلب Android ذلك، اسمح للمتصفح بـ\"تثبيت التطبيقات غير المعروفة\"، ثم ارجع واضغط على تثبيت.\n5. افتح تطبيق المحرك مرة واحدة ونزّل صوتًا بلغتك (يحتاج SherpaTTS وRHVoice إلى ذلك).\n6. ارجع إلى CuevaReader واضغط على الزر أدناه.</string>
     <string name="check_again">ثبّتُّه، تحقّق مرة أخرى</string>
-    <string name="google_option_intro">إذا كنت تفضّل ذلك، يمكنك استخدام محرك Google الصوتي على هاتفك:</string>
-    <string name="use_google_for_now">استخدام Google حاليًا</string>
+    <string name="google_option_intro">استخدام برنامج Google على هاتفي حاليًا</string>
+    <string name="use_google_for_now">عدم تثبيت أي شيء</string>
     <string name="google_not_installed">خدمات الكلام من Google غير مثبتة على هذا الهاتف.</string>
     <string name="setup_guide">دليل إضافة الأصوات</string>
 

@@ -217,6 +217,7 @@ class ReaderService : Service() {
                 if (autoPlay) play()
             }.onFailure { e ->
                 Log.e(TAG, "Failed to load EPUB", e)
+                IngestionLog.error(this@ReaderService, "open EPUB", uri, e)
                 _state.update { it.copy(loading = false, error = getString(R.string.error_open_book, e.message.orEmpty())) }
                 if (autoPlay) stop()
             }

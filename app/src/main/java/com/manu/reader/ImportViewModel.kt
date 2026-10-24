@@ -57,6 +57,7 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
+                IngestionLog.error(context, "import", uri, e)
                 mutableState.value = State.Failed(context.getString(R.string.conversion_failed, e.message.orEmpty()))
             }
         }
@@ -93,7 +94,8 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                     if (result.originalDeleted) R.string.library_move_done else R.string.library_move_copied)
             } catch (e: CancellationException) {
                 throw e
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                IngestionLog.error(context, "move to library", pending.source, e)
                 mutableState.value = State.LibraryMoveFinished(pending.source, R.string.library_move_failed)
             }
         }
@@ -144,13 +146,16 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                     while (candidate in names) candidate = filename.removeSuffix(".epub") + " (${suffix++}).epub"
                     DocumentsContract.createDocument(context.contentResolver, parent, EPUB_MIME, candidate)
                         ?: error("Cannot create document")
+                }.onFailure {
+                    IngestionLog.error(context, "save converted EPUB", uri, IngestionException("create in library", it))
                 }.getOrNull()
                 if (target != null) {
                     try {
                         writeTo(result, target)
                         result.delete()
                         return State.Done(target, true)
-                    } catch (_: Exception) {
+                    } catch (e: Exception) {
+                        IngestionLog.error(context, "save converted EPUB", uri, IngestionException("write to library", e))
                         runCatching { DocumentsContract.deleteDocument(context.contentResolver, target) }
                     }
                 }
@@ -179,11 +184,13 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                     val text = stripper.getText(document)
                     extracted += text.length
                     require(extracted <= 20 * 1024 * 1024L) { context.getString(R.string.conversion_too_large) }
-                    val paragraphs = text.replace("\r", "")
+                    val paragraphs = cleanPdfPage(text)
                         .split(Regex("\n\\s*\n"))
                         .map { it.replace(Regex("(?<=\\S)\n(?=\\S)"), " ").trim() }
                         .filter(String::isNotBlank)
-                    if (paragraphs.isNotEmpty()) add(ConvertedSection(context.getString(R.string.converted_page, page), paragraphs))
+                    if (paragraphs.isNotEmpty()) {
+                        add(ConvertedSection(context.getString(R.string.converted_page, page), paragraphs, showHeading = false))
+                    }
                 }
             }
         }
@@ -223,6 +230,7 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
+                IngestionLog.error(context, "save converted EPUB", uri, IngestionException("write to chosen destination", e))
                 runCatching { DocumentsContract.deleteDocument(context.contentResolver, uri) }
                 mutableState.value = State.Failed(context.getString(R.string.conversion_failed, e.message.orEmpty()))
             } finally {
@@ -233,6 +241,25 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     companion object {
+        // Whole lines like "Página 12", "pág. 12 de 300" or "Page 12/300"; text around them is kept.
+        private val PAGE_MARKER = Regex("(?imu)^[ \\t\\-–—|]*(p[aá]gina|p[aá]g\\.?|page|pg\\.?)[ \\t]*\\d+([ \\t]*(de|of|/)[ \\t]*\\d+)?[ \\t\\-–—|]*$\\n?")
+
+        internal fun stripPageMarkers(text: String): String = text.replace(PAGE_MARKER, "")
+
+        private val BARE_PAGE_NUMBER = Regex("^[\\p{P}\\s]*\\d{1,4}[\\p{P}\\s]*$")
+
+        // Only the first and last lines are checked, so numbers inside the text are kept.
+        internal fun cleanPdfPage(text: String): String {
+            val lines = stripPageMarkers(text.replace("\r", "")).lines().map(String::trimEnd).toMutableList()
+            for (fromEnd in listOf(false, true)) {
+                val index = if (fromEnd) lines.indexOfLast(String::isNotBlank) else lines.indexOfFirst(String::isNotBlank)
+                if (index >= 0 && BARE_PAGE_NUMBER.matches(lines[index])) lines.removeAt(index)
+            }
+            return lines.joinToString("\n").replace(HYPHENATED_BREAK, "")
+        }
+
+        private val HYPHENATED_BREAK = Regex("(?<=\\p{L})-\n\n?(?=\\p{Ll})")
+
         const val EPUB_MIME = "application/epub+zip"
         const val DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     }
