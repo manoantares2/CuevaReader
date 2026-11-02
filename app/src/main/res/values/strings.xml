@@ -4,7 +4,7 @@
     <string name="channel_name">Playback</string>
 
     <string name="setup_title">Install a voice engine</string>
-    <string name="why_open_source">Why a separate voice engine? CuevaReader is built only with free and open source software. We believe in software freedom: you can use, study, share and improve every part of it, and nobody pays royalties or license fees to anyone. Many apps could be built this way with little effort, but most don\'t. We hope this encourages you to prefer, and build, open alternatives too.</string>
+    <string name="why_open_source">Free and open source voices are built by the free software community and distributed separately.\n\nCuevaReader is also built only with free and open source software. We believe in the benefits of software freedom: you can use, study, share and improve every part of it, and nobody pays royalties or license fees to anyone.\n\nMany apps could be built this way with little effort, but most are not. We hope this encourages you to create and prefer using open source alternatives.</string>
     <string name="setup_intro">CuevaReader reads books aloud using a free, open source text-to-speech engine. It is not bundled with the app, so please install one of these first:</string>
     <string name="download">Download</string>
     <string name="install_steps_title">How to install</string>
@@ -16,15 +16,15 @@
     <string name="setup_guide">Guide to adding voices</string>
 
     <string name="open_epub">Open book</string>
-    <string name="conversion_busy">Converting to EPUB…</string>
-    <string name="conversion_hint">EPUB · PDF/DOCX → EPUB\nText only: no images, original layout or OCR.</string>
-    <string name="conversion_saved">Text-only EPUB saved. Image-only PDF pages are not included. Your original file is unchanged.</string>
-    <string name="conversion_save_title">Convert to EPUB</string>
-    <string name="conversion_save_message">Choose where to save your EPUB. To keep it beside the original, select that folder. A writable library folder saves it automatically.</string>
-    <string name="conversion_failed">Could not convert or save this document: %1$s</string>
-    <string name="conversion_no_pdf_text">This PDF has no extractable text. Scanned PDFs need OCR, which is not included. PDFs with mixed text and scanned pages may only convert their text pages.</string>
+    <string name="conversion_busy">Preparing document…</string>
+    <string name="conversion_hint">EPUB · PDF and DOCX text extraction\nPDF and DOCX are read directly, without creating an EPUB. Text only: no images, original layout or OCR.</string>
+    <string name="conversion_saved">Document saved. Your original file is unchanged.</string>
+    <string name="conversion_save_title">Save document</string>
+    <string name="conversion_save_message">Choose where to save your document. To keep it beside the original, select that folder. A writable library folder saves it automatically.</string>
+    <string name="conversion_failed">Could not prepare or save this document: %1$s</string>
+    <string name="conversion_no_pdf_text">This PDF has no extractable text. Scanned PDFs need OCR, which is not included. In PDFs with mixed text and scanned pages, only pages with extractable text can be read.</string>
     <string name="conversion_pdf_restricted">This PDF does not allow text extraction.</string>
-    <string name="conversion_too_large">Conversion supports files up to 100 MB, PDFs up to 500 pages, and DOCX text up to 20 MB.</string>
+    <string name="conversion_too_large">Supported limits are files up to 100 MB, PDFs up to 500 pages, and DOCX text up to 20 MB.</string>
     <string name="conversion_cannot_read">Cannot read the source file.</string>
     <string name="conversion_cannot_save">Cannot write to this destination.</string>
     <string name="converted_page">Page %1$d</string>
@@ -33,13 +33,15 @@
     <string name="library">Library</string>
     <string name="get_books_button">How do I get books?</string>
     <string name="get_books_title">Free books for everyone</string>
-    <string name="get_books_message">Thousands of books are free to read and share, legally. Projects like Project Gutenberg, run by volunteers, digitize public domain works (classics whose copyright has expired) and offer them at no cost, with no accounts and no DRM.\n\nOther great sources are Standard Ebooks and Wikisource.\n\nTo add a book:\n1. Download it in EPUB format (on Project Gutenberg choose \"EPUB3\").\n2. Move the .epub file into your library folder (for example Reader).\n3. Open this panel again and tap the book.</string>
+    <string name="get_books_message">You can find free books in the public domain. CuevaReader lets you read and listen to EPUB, PDF and DOCX book files with extractable text.\n\nTo add a book:\n1. Download it as an EPUB, PDF or DOCX. You will usually find it in Downloads.\n2. Open the file and choose CuevaReader. You can also select it using Open book inside the app.\n3. If you open it from another app and have a writable library folder configured, CuevaReader will offer to move it there. If Android does not allow deleting the original, it will save a copy. You can then find it in Library.\n\nPDF and DOCX files are read directly by extracting their text, without converting them to EPUB or saving an EPUB. Images and optical character recognition (OCR) for scanned pages are not included.\n\nMOBI and AZW files are not supported. You can convert DRM-free files to EPUB using Calibre on a computer. Download Calibre: https://calibre-ebook.com/download</string>
     <string name="get_books_link">Get books nao!</string>
-    <string name="get_books_url">https://www.gutenberg.org/ebooks/search/?query=l.en</string>
+    <string name="get_books_url" formatted="false">https://z-lib.sk/s/?e=1&amp;yearFrom=2026&amp;languages%5B%5D=english&amp;extensions%5B%5D=EPUB&amp;selected_content_types%5B%5D=book</string>
     <string name="get_books_hidden">If buying isn\'t owning, pirating is not stealing.\nPlease pirate your books.</string>
     <string name="close">Close</string>
     <string name="choose_folder">Create or select library folder</string>
     <string name="change_folder">Change folder</string>
+    <string name="browse_library_folder">Open library folder</string>
+    <string name="browse_library_unavailable">Could not open the folder. Check access or open it with your phone’s file manager.</string>
     <string name="no_folder">No folder selected yet.</string>
     <string name="folder_label">Folder: %1$s</string>
     <string name="library_empty">No EPUB files here yet. Copy .epub files into this folder and reopen this panel.</string>
@@ -70,6 +72,7 @@
     <string name="error_engine_start">Could not start %1$s. Open it once to finish its setup.</string>
     <string name="error_open_book">Could not open book: %1$s</string>
     <string name="error_no_text">No readable text found in this EPUB</string>
+    <string name="error_no_docx_text">No readable text found in this DOCX</string>
     <string name="untitled">Untitled</string>
     <string name="chapter_number">Chapter %1$d</string>
     <string name="section">Section</string>

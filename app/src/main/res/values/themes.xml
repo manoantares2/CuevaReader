@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.ManuReader" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.CuevaReader.Dialog</item>
         <item name="colorPrimary">@color/brand_primary</item>
         <item name="colorOnPrimary">@color/brand_on_primary</item>
         <item name="colorPrimaryContainer">@color/brand_primary_container</item>
@@ -13,6 +14,32 @@
         <item name="android:colorAccent">@color/brand_primary</item>
         <item name="android:textColorHighlight">@color/brand_selection</item>
         <item name="android:windowBackground">@color/night_background</item>
+    </style>
+
+    <style name="ThemeOverlay.CuevaReader.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.CuevaReader.Dialog</item>
+        <item name="materialAlertDialogTitlePanelStyle">@style/CuevaReader.Dialog.TitlePanel</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/CuevaReader.Dialog.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/CuevaReader.Dialog.Body</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.CuevaReader.Dialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <style name="CuevaReader.Dialog.TitlePanel" parent="MaterialAlertDialog.Material3.Title.Panel">
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="CuevaReader.Dialog.Title" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="CuevaReader.Dialog.Body" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="ControlButton" parent="Widget.AppCompat.ImageButton">

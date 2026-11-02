@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sleep_timer_title">مؤقت النوم</string>
+    <string name="sleep_timer_intro">سأتوقف عن القراءة بصوت عالٍ بعد</string>
+    <string name="sleep_timer_minutes">%1$d دقيقة</string>
+    <string name="sleep_timer_info">يستغرق البالغ عادةً نحو 15–20 دقيقة للنوم، لكن ذلك يختلف من شخص لآخر.</string>
+    <string name="sleep_timer_start">ضبط المؤقت</string>
+    <string name="sleep_timer_cancel">إلغاء المؤقت</string>
+    <string name="sleep_timer_active">مؤقت النوم مفعّل</string>
     <string name="library_move_title">نقل إلى مكتبتك؟</string>
-    <string name="library_move_message">هل تريد نقل هذا الملف إلى %1$s؟ إذا لم يسمح Android بحذف الأصل، فسيتم حفظ نسخة. ستظل ملفات PDF وDOCX تُحوّل إلى EPUB للقراءة.</string>
+    <string name="library_move_message">هل تريد نقل هذا الملف إلى %1$s؟ إذا لم يسمح Android بحذف الأصل، فسيتم حفظ نسخة. تُقرأ ملفات PDF وDOCX مباشرةً باستخراج نصها، دون تحويلها إلى EPUB أو حفظ ملف EPUB.</string>
     <string name="library_move_accept">نقل إلى المكتبة</string>
     <string name="library_move_skip">فتح دون نقل</string>
     <string name="library_move_done">تم نقل الملف إلى مكتبتك.</string>
@@ -23,11 +30,11 @@
     <string name="flow_check_voice">3 · التحقق من التثبيت</string>
     <string name="flow_other_voices">أصوات أخرى</string>
     <string name="flow_need_help">أحتاج إلى مساعدة</string>
-    <string name="flow_why_free">لماذا تثبيت محرك منفصل؟</string>
+    <string name="flow_why_free">لماذا تثبيت محرك صوت منفصل؟</string>
     <string name="flow_library_title">مكان لكتبك</string>
     <string name="flow_library_intro">اختر مجلدًا لتجد كتبك هنا. يمكنك إنشاء مجلد باسم Reader.</string>
     <string name="flow_books_title">قراءات مجانية</string>
-    <string name="flow_books_intro">ابحث عن كتابك التالي. يُحوّل PDF النصي إلى EPUB، أما صفحات الصور فتحتاج إلى التعرّف على النص، وهو غير متاح في التطبيق.</string>
+    <string name="flow_books_intro">ابحث عن كتابك التالي. تُقرأ ملفات PDF مباشرةً باستخراج نصها، دون حفظ ملف EPUB، أما صفحات الصور فتحتاج إلى التعرّف على النص، وهو غير متاح في التطبيق.</string>
     <string name="flow_find_books">كتب مجانية باللغة العربية</string>
     <string name="flow_search_by_title">البحث حسب العنوان</string>
     <string name="flow_search_title_dialog">البحث عن كتاب بعنوانه</string>

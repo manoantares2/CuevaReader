@@ -168,8 +168,10 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener { drawer.open() }
         chooseFolder.setOnClickListener { showFolderHelp() }
+        findViewById<Button>(R.id.browseLibraryFolder).setOnClickListener { browseLibraryFolder() }
         findViewById<Button>(R.id.getBooksHelp).setOnClickListener { showGetBooksHelp() }
         findViewById<Button>(R.id.mainGetBooksHelp).setOnClickListener { showGetBooksHelp() }
+        findViewById<ImageButton>(R.id.sleepTimer).setOnClickListener { showSleepTimer() }
 
         val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
         findViewById<ImageButton>(R.id.nightMode).apply {
@@ -240,7 +242,7 @@ class MainActivity : AppCompatActivity() {
                     service?.state?.value?.let(::render)
                     when (state) {
                         is ImportViewModel.State.NeedsLibraryMove -> if (libraryMoveDialog == null) {
-                            libraryMoveDialog = AlertDialog.Builder(this@MainActivity)
+                            libraryMoveDialog = MaterialAlertDialogBuilder(this@MainActivity)
                                 .setTitle(R.string.library_move_title)
                                 .setMessage(getString(R.string.library_move_message, Library.folderName(state.folder)))
                                 .setPositiveButton(R.string.library_move_accept) { _, _ -> importer.answerLibraryMove(true) }
@@ -271,7 +273,7 @@ class MainActivity : AppCompatActivity() {
                             saveConverted.launch(state.name)
                         }
                         is ImportViewModel.State.Failed -> {
-                            AlertDialog.Builder(this@MainActivity)
+                            MaterialAlertDialogBuilder(this@MainActivity)
                                 .setTitle(R.string.conversion_save_title)
                                 .setMessage(state.message)
                                 .setPositiveButton(R.string.close, null)
@@ -365,6 +367,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindSetupGuide(view: View, onSetupComplete: () -> Unit = {}) {
+        val directSpanish = resources.configuration.locales[0].language == "es"
+        if (directSpanish) {
+            for (id in listOf(R.id.recommendedEngine, R.id.sherpaRequirement, R.id.installVoice,
+                R.id.openVoiceEngine, R.id.checkAgain, R.id.otherVoices)) {
+                view.findViewById<View>(id).isVisible = false
+            }
+            view.findViewById<LinearLayout>(R.id.directVoices).apply {
+                isVisible = true
+                val arm64 = "arm64-v8a" in Build.SUPPORTED_ABIS
+                DirectVoices.spanish.forEach { voice ->
+                    addView(Button(this@MainActivity).apply {
+                        setText(voice.label)
+                        isEnabled = arm64
+                        setOnClickListener { openUrl(voice.url) }
+                    })
+                }
+                addView(TextView(this@MainActivity).apply {
+                    setText(if (arm64) R.string.voice_arm64_only else R.string.voice_arm64_unavailable)
+                    gravity = android.view.Gravity.CENTER
+                })
+            }
+        }
         val installSteps = view.findViewById<View>(R.id.installSteps)
         view.findViewById<Button>(R.id.showInstallSteps).setOnClickListener {
             installSteps.isVisible = !installSteps.isVisible
@@ -387,7 +411,8 @@ class MainActivity : AppCompatActivity() {
             engineList.isVisible = !engineList.isVisible
         }
         view.findViewById<Button>(R.id.voiceHelp).setOnClickListener {
-            showTextHelp(R.string.flow_need_help, R.string.install_steps)
+            if (directSpanish) showDirectVoiceHelp()
+            else showTextHelp(R.string.flow_need_help, R.string.install_steps)
         }
         view.findViewById<Button>(R.id.softwareFreedom).setOnClickListener {
             showTextHelp(R.string.flow_why_free, R.string.why_open_source)
@@ -415,12 +440,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDirectVoiceHelp() {
+        val message = TextView(this).apply {
+            setText(R.string.voice_direct_help)
+            textSize = 16f
+            gravity = android.view.Gravity.CENTER
+            val padding = (24 * resources.displayMetrics.density).toInt()
+            setPadding(padding, 0, padding, 0)
+            android.text.util.Linkify.addLinks(this, android.text.util.Linkify.WEB_URLS)
+        }
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.flow_need_help)
+            .setView(ScrollView(this).apply { addView(message) })
+            .setPositiveButton(R.string.voice_install_sherpa) { _, _ -> openUrl(TtsEngines.recommended.first().url) }
+            .setNeutralButton(R.string.voice_install_fdroid) { _, _ -> openUrl("https://f-droid.org/") }
+            .setNegativeButton(R.string.close, null)
+            .show()
+    }
+
     private fun showSetupGuide() {
         val guide = LayoutInflater.from(this).inflate(R.layout.setup_guide, null).apply {
             isVisible = true
             findViewById<View>(R.id.installSteps).isVisible = true
         }
-        val dialog = AlertDialog.Builder(this)
+        val dialog = MaterialAlertDialogBuilder(this)
             .setView(ScrollView(this).apply {
                 val padding = (16 * resources.displayMetrics.density).toInt()
                 setPadding(padding, padding, padding, 0)
@@ -442,13 +485,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFolderHelp() {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(R.string.flow_library_title)
             .setMessage(R.string.flow_library_intro)
             .setPositiveButton(R.string.choose_folder) { _, _ -> openFolder.launch(Library.suggestedFolder) }
             .setNegativeButton(R.string.later, null)
             .setNeutralButton(R.string.flow_need_help) { _, _ ->
-                AlertDialog.Builder(this)
+                MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.folder_help_title)
                     .setMessage(R.string.folder_help)
                     .setPositiveButton(R.string.choose_folder) { _, _ -> openFolder.launch(Library.suggestedFolder) }
@@ -467,6 +510,7 @@ class MainActivity : AppCompatActivity() {
             setPadding(horizontalPadding, 0, horizontalPadding, 0)
             addView(TextView(this@MainActivity).apply {
                 text = getString(R.string.flow_books_intro)
+                gravity = android.view.Gravity.CENTER
                 textSize = 16f
                 setPadding(0, 0, 0, (8 * density).toInt())
             })
@@ -492,7 +536,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
-        booksDialog = AlertDialog.Builder(this)
+        booksDialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.flow_books_title)
             .setView(content)
             .setNegativeButton(R.string.close, null)
@@ -521,7 +565,7 @@ class MainActivity : AppCompatActivity() {
                 (96 * resources.displayMetrics.density).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT,
             ))
         }
-        val dialog = AlertDialog.Builder(this)
+        val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.flow_search_title_dialog)
             .setView(content)
             .setPositiveButton(R.string.flow_search_by_title, null)
@@ -545,8 +589,42 @@ class MainActivity : AppCompatActivity() {
         input.requestFocus()
     }
 
+    private fun showSleepTimer() {
+        val reader = service ?: return
+        val deadline = reader.state.value.sleepDeadline
+        val minutes = Spinner(this).apply {
+            adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item,
+                (1..30).map { getString(R.string.sleep_timer_minutes, it) })
+            contentDescription = getString(R.string.sleep_timer_title)
+            val remaining = deadline?.let {
+                ((it - android.os.SystemClock.elapsedRealtime() + 59_999) / 60_000).toInt().coerceIn(1, 30)
+            } ?: 15
+            setSelection(remaining - 1)
+        }
+        val content = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            val padding = (24 * resources.displayMetrics.density).toInt()
+            setPadding(padding, 0, padding, padding)
+            addView(minutes)
+            addView(TextView(this@MainActivity).apply {
+                text = getString(R.string.sleep_timer_info)
+                gravity = android.view.Gravity.CENTER
+                textSize = 14f
+            })
+        }
+        val builder = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.sleep_timer_intro)
+            .setView(content)
+            .setPositiveButton(R.string.sleep_timer_start) { _, _ ->
+                reader.setSleepTimer(minutes.selectedItemPosition + 1)
+            }
+            .setNegativeButton(R.string.close, null)
+        if (deadline != null) builder.setNeutralButton(R.string.sleep_timer_cancel) { _, _ -> reader.cancelSleepTimer() }
+        builder.show()
+    }
+
     private fun showTextHelp(title: Int, message: Int) {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(title)
             .setMessage(message)
             .setPositiveButton(R.string.close, null)
@@ -556,6 +634,7 @@ class MainActivity : AppCompatActivity() {
     private fun showGetBooksDetails() {
         val density = resources.displayMetrics.density
         val message = TextView(this).apply {
+            gravity = android.view.Gravity.CENTER
             setTextIsSelectable(true)
             textSize = 16f
             setPadding((24 * density).toInt(), (8 * density).toInt(), (24 * density).toInt(), (8 * density).toInt())
@@ -575,11 +654,37 @@ class MainActivity : AppCompatActivity() {
             append(getString(R.string.get_books_hidden))
             setSpan(ForegroundColorSpan(surface), start, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
+        val linkedText = SpannableStringBuilder(message.text)
+        val calibreUrl = "https://calibre-ebook.com/download"
+        val calibreStart = linkedText.indexOf(calibreUrl)
+        if (calibreStart >= 0) {
+            linkedText.setSpan(android.text.style.URLSpan(calibreUrl), calibreStart,
+                calibreStart + calibreUrl.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            message.text = linkedText
+            message.movementMethod = android.text.method.LinkMovementMethod.getInstance()
+        }
         dialog.show()
+    }
+
+    private fun browseLibraryFolder() {
+        val tree = Library.folder(this) ?: return
+        val document = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(document, DocumentsContract.Document.MIME_TYPE_DIR)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        try {
+            startActivity(intent)
+        } catch (_: ActivityNotFoundException) {
+            Toast.makeText(this, R.string.browse_library_unavailable, Toast.LENGTH_LONG).show()
+        } catch (_: SecurityException) {
+            Toast.makeText(this, R.string.browse_library_unavailable, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun refreshLibrary() {
         val folder = Library.folder(this)
+        findViewById<Button>(R.id.browseLibraryFolder).isEnabled = folder != null
         chooseFolder.setText(if (folder == null) R.string.choose_folder else R.string.change_folder)
         if (folder == null) {
             libraryFolder.setText(R.string.no_folder)
@@ -602,6 +707,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun render(state: ReaderService.State) {
+        findViewById<ImageButton>(R.id.sleepTimer).apply {
+            isEnabled = state.book != null && !state.loading
+            isActivated = state.sleepDeadline != null
+            contentDescription = getString(if (state.sleepDeadline != null) R.string.sleep_timer_active else R.string.sleep_timer_title)
+        }
         engineLabel.text = getString(R.string.engine_label, state.engineName ?: "-")
         val converting = importer.state.value == ImportViewModel.State.Busy
         loading.isVisible = state.loading || converting
@@ -639,7 +749,7 @@ class MainActivity : AppCompatActivity() {
     private fun showChapters() {
         val s = service ?: return
         val book = s.state.value.book ?: return
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(R.string.chapters)
             .setItems(book.chapters.map { it.title }.toTypedArray()) { _, which ->
                 s.seekTo(book.chapters[which].start)
@@ -693,7 +803,7 @@ class MainActivity : AppCompatActivity() {
             })
         }
         val scroll = ScrollView(this).apply { addView(content) }
-        dialog = AlertDialog.Builder(this)
+        dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.choose_engine)
             .setView(scroll)
             .setNegativeButton(R.string.close, null)

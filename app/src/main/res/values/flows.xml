@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sleep_timer_title">Sleep timer</string>
+    <string name="sleep_timer_intro">I’ll stop reading aloud in</string>
+    <string name="sleep_timer_minutes">%1$d min</string>
+    <string name="sleep_timer_info">It typically takes an adult around 15–20 minutes to fall asleep, though this varies from person to person.</string>
+    <string name="sleep_timer_start">Set timer</string>
+    <string name="sleep_timer_cancel">Cancel timer</string>
+    <string name="sleep_timer_active">Sleep timer active</string>
     <string name="library_move_title">Move to your library?</string>
-    <string name="library_move_message">Move this file to %1$s? If Android does not allow deleting the original, a copy will be saved instead. PDF and DOCX files will still be converted to EPUB for reading.</string>
+    <string name="library_move_message">Move this file to %1$s? If Android does not allow deleting the original, a copy will be saved instead. PDF and DOCX files are read directly by extracting their text, without converting them to EPUB or saving an EPUB.</string>
     <string name="library_move_accept">Move to library</string>
     <string name="library_move_skip">Open without moving</string>
     <string name="library_move_done">File moved to your library.</string>
@@ -23,7 +30,7 @@
     <string name="flow_check_voice">3 · Check installation</string>
     <string name="flow_other_voices">Other voices</string>
     <string name="flow_need_help">I need help</string>
-    <string name="flow_why_free">Why install a separate engine?</string>
+    <string name="flow_why_free">Why install a separate voice engine?</string>
     <string name="flow_library_title">A place for your books</string>
     <string name="flow_library_intro">Choose a folder to find your books here. You can create one called Reader.</string>
     <string name="flow_books_title">Free reads</string>

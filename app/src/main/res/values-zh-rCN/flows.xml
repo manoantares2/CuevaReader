@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sleep_timer_title">睡眠定时器</string>
+    <string name="sleep_timer_intro">将在以下时间后停止朗读</string>
+    <string name="sleep_timer_minutes">%1$d 分钟</string>
+    <string name="sleep_timer_info">成年人通常需要约 15–20 分钟入睡，但因人而异。</string>
+    <string name="sleep_timer_start">设置定时器</string>
+    <string name="sleep_timer_cancel">取消定时器</string>
+    <string name="sleep_timer_active">睡眠定时器已启用</string>
+    <string name="library_move_title">移入书库？</string>
+    <string name="library_move_message">是否将此文件移入 %1$s？如果 Android 不允许删除原文件，将保存一份副本。PDF 和 DOCX 会直接提取文本读取，不会转换或保存为 EPUB。</string>
+    <string name="library_move_accept">移入书库</string>
+    <string name="library_move_skip">直接打开，不移动</string>
+    <string name="library_move_done">文件已移入书库。</string>
+    <string name="library_move_copied">副本已保存到书库。Android 不允许删除原文件。</string>
+    <string name="library_move_failed">无法移动文件，将打开原文件。</string>
+    <string name="search_provider">搜索引擎</string>
+    <string name="search_duckduckgo_preferred">DuckDuckGo（推荐）</string>
+    <string name="search_google">Google</string>
+    <string name="search_ciudad_seva">Ciudad Seva</string>
+    <string name="flow_voice_title">开始朗读，有两种选择</string>
+    <string name="flow_install_free_voice">安装新的免费语音</string>
+    <string name="flow_install_free_voice_hint">需要安装另一个应用</string>
+    <string name="flow_voice_intro">选择一个语音引擎来听书。</string>
+    <string name="flow_steps_title">三个步骤，开始朗读</string>
+    <string name="flow_recommended_voice">%1$s · 推荐\n自然流畅的语音，自由且开源。</string>
+    <string name="flow_sherpa_requirement">需要具备英语知识。</string>
+    <string name="flow_install_voice">1 · 安装语音引擎</string>
+    <string name="flow_open_voice">2 · 打开引擎并选择语音</string>
+    <string name="flow_check_voice">3 · 检查安装</string>
+    <string name="flow_other_voices">其他语音</string>
+    <string name="flow_need_help">我需要帮助</string>
+    <string name="flow_why_free">为什么需要单独安装语音引擎？</string>
+    <string name="flow_library_title">存放书籍的地方</string>
+    <string name="flow_library_intro">选择一个文件夹，就能在这里找到书籍。你可以创建一个名为 Reader 的文件夹。</string>
+    <string name="flow_books_title">免费读物</string>
+    <string name="flow_books_intro">寻找下一本书。下载 EPUB，然后使用 CuevaReader 打开。</string>
+    <string name="flow_find_books">免费中文书籍</string>
+    <string name="flow_search_by_title">按书名搜索</string>
+    <string name="flow_search_title_dialog">搜索书名</string>
+    <string name="flow_search_title_hint">书名</string>
+    <string name="flow_why_books_free">为什么免费？</string>
+    <string name="flow_document_intro">打开文档，即可聆听\nEPUB · PDF · DOCX\n仅支持文本，不包含图片或 OCR。</string>
+</resources>

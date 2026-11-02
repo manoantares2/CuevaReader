@@ -181,15 +181,30 @@
     </LinearLayout>
 </ScrollView>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginVertical="8dp">
 <ImageButton
     android:id="@+id/nightMode"
     style="@style/ControlButton"
     android:layout_width="48dp"
     android:layout_height="48dp"
     android:layout_gravity="center_horizontal"
-    android:layout_marginVertical="8dp"
     android:contentDescription="@string/dark_mode"
     android:src="@drawable/ic_dark_mode" />
+<ImageButton
+    android:id="@+id/sleepTimer"
+    style="@style/ControlButton"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:enabled="false"
+    app:tint="@color/sleep_timer_tint"
+    android:contentDescription="@string/sleep_timer_title"
+    android:src="@drawable/ic_sleep_timer" />
+</LinearLayout>
 </LinearLayout>
 
     <!-- Library side panel -->
@@ -220,13 +235,30 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="?attr/textAppearanceBodySmall" />
 
-            <Button
-                android:id="@+id/chooseFolder"
-                style="@style/Widget.Material3.Button.TonalButton"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+            <Button
+                android:id="@+id/chooseFolder"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
                 android:text="@string/choose_folder" />
+            <Button
+                android:id="@+id/browseLibraryFolder"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:enabled="false"
+                android:text="@string/browse_library_folder" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/libraryEmpty"

@@ -52,6 +52,7 @@ class ReaderService : Service() {
         val loading: Boolean = false,
         val error: String? = null,
         val engineName: String? = null,
+        val sleepDeadline: Long? = null,
     )
 
     inner class LocalBinder : Binder() {
@@ -62,6 +63,17 @@ class ReaderService : Service() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private val _state = MutableStateFlow(State())
     val state: StateFlow<State> = _state.asStateFlow()
+    private val sleepTimer = SleepTimer(
+        onChanged = { deadline -> _state.update { it.copy(sleepDeadline = deadline) } },
+        onExpired = {
+            resumeOnFocusGain = false
+            pause()
+        },
+    )
+
+    fun setSleepTimer(minutes: Int) = sleepTimer.schedule(minutes)
+
+    fun cancelSleepTimer() = sleepTimer.cancel()
 
     private lateinit var session: MediaSessionCompat
     private lateinit var audioManager: AudioManager
@@ -171,6 +183,7 @@ class ReaderService : Service() {
     }
 
     override fun onDestroy() {
+        sleepTimer.cancel()
         pause()
         tts?.shutdown()
         session.release()
@@ -207,17 +220,23 @@ class ReaderService : Service() {
         pause()
         _state.update { it.copy(loading = true, error = null) }
         scope.launch {
-            val result = withContext(Dispatchers.IO) { runCatching { EpubParser.parse(this@ReaderService, uri) } }
+            val result = withContext(Dispatchers.IO) {
+                runCatching {
+                    if (PdfReader.isPdf(this@ReaderService, uri)) PdfReader.parse(this@ReaderService, uri)
+                    else if (DocxReader.isDocx(this@ReaderService, uri)) DocxReader.parse(this@ReaderService, uri)
+                    else EpubParser.parse(this@ReaderService, uri)
+                }
+            }
             result.onSuccess { book ->
                 prefs.edit { putString(KEY_LAST_BOOK, uri.toString()) }
                 val saved = prefs.getInt(positionKey(uri), 0).coerceIn(0, book.paragraphs.lastIndex)
-                _state.update { State(book = book, position = saved, engineName = it.engineName) }
+                _state.update { State(book = book, position = saved, engineName = it.engineName, sleepDeadline = it.sleepDeadline) }
                 currentUri = uri
                 updateSession()
                 if (autoPlay) play()
             }.onFailure { e ->
-                Log.e(TAG, "Failed to load EPUB", e)
-                IngestionLog.error(this@ReaderService, "open EPUB", uri, e)
+                Log.e(TAG, "Failed to load document", e)
+                IngestionLog.error(this@ReaderService, "open document", uri, e)
                 _state.update { it.copy(loading = false, error = getString(R.string.error_open_book, e.message.orEmpty())) }
                 if (autoPlay) stop()
             }
@@ -277,6 +296,7 @@ class ReaderService : Service() {
     fun togglePlayPause() = if (_state.value.playing) pause() else play()
 
     fun stop() {
+        sleepTimer.cancel()
         pause()
         session.isActive = false
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)

@@ -52,6 +52,12 @@
             android:layout_marginTop="20dp"
             android:text="@string/flow_steps_title"
             android:textAppearance="?attr/textAppearanceTitleLarge" />
+        <LinearLayout
+            android:id="@+id/directVoices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
         <TextView
             android:id="@+id/recommendedEngine"
             android:layout_width="match_parent"
@@ -61,6 +67,7 @@
             android:padding="12dp"
             android:textAppearance="?attr/textAppearanceBodyLarge" />
         <TextView
+            android:id="@+id/sherpaRequirement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
