@@ -10,8 +10,8 @@ android {
         applicationId = "com.manu.reader"
         minSdk = 26
         targetSdk = 36
-        versionCode = 4
-        versionName = "QA-v1.5-pre"
+        versionCode = 5
+        versionName = "QA-v1.6-pre"
     }
 
     buildTypes {
@@ -24,7 +24,7 @@ android {
 
     androidResources {
         // Drops the ~80 languages bundled by libraries; also lets users pick the app language in system settings.
-        localeFilters += listOf("en", "es", "pt", "ar")
+        localeFilters += listOf("en", "es", "pt", "ar", "zh-rCN")
         generateLocaleConfig = true
     }
 

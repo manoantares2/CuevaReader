@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sleep_timer_title">Temporizador de sueño</string>
+    <string name="sleep_timer_intro">Dejaré de leer en voz alta en</string>
+    <string name="sleep_timer_minutes">%1$d min</string>
+    <string name="sleep_timer_info">Un adulto suele tardar unos 15–20 minutos en dormirse, aunque varía de una persona a otra.</string>
+    <string name="sleep_timer_start">Programar</string>
+    <string name="sleep_timer_cancel">Cancelar temporizador</string>
+    <string name="sleep_timer_active">Temporizador de sueño activo</string>
     <string name="library_move_title">¿Mover a tu biblioteca?</string>
-    <string name="library_move_message">¿Mover este archivo a %1$s? Si Android no permite eliminar el original, se guardará una copia. Los PDF y DOCX se seguirán convirtiendo a EPUB para leerlos.</string>
+    <string name="library_move_message">¿Mover este archivo a %1$s? Si Android no permite eliminar el original, se guardará una copia. Los PDF y DOCX se leen directamente extrayendo su texto, sin convertirlos a EPUB ni guardar un EPUB.</string>
     <string name="library_move_accept">Mover a la biblioteca</string>
     <string name="library_move_skip">Abrir sin mover</string>
     <string name="library_move_done">Archivo movido a tu biblioteca.</string>
@@ -23,7 +30,7 @@
     <string name="flow_check_voice">3 · Comprobar instalación</string>
     <string name="flow_other_voices">Otras voces</string>
     <string name="flow_need_help">Necesito ayuda</string>
-    <string name="flow_why_free">¿Por qué se instala un motor aparte?</string>
+    <string name="flow_why_free">¿Por qué se instala un motor de voz aparte?</string>
     <string name="flow_library_title">Un lugar para tus libros</string>
     <string name="flow_library_intro">Elige una carpeta para encontrar aquí tus libros. Puedes crear una llamada Reader.</string>
     <string name="flow_books_title">Lecturas gratis</string>

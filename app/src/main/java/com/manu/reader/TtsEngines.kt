@@ -13,6 +13,10 @@ data class InstalledEngine(val packageName: String, val label: String)
 
 object TtsEngines {
     const val GOOGLE_PACKAGE = "com.google.android.tts"
+    internal fun isSherpaOnnx(packageName: String): Boolean =
+        packageName == "com.k2fsa.sherpa.onnx.tts.engine" ||
+            packageName.startsWith("com.k2fsa.sherpa.onnx.tts.engine.") ||
+            packageName.startsWith("com.k2fsa.sherpa.onnx.tts.engine_")
 
     // Open source engines, in order of preference.
     val recommended = listOf(
@@ -48,6 +52,7 @@ object TtsEngines {
     }
 
     fun canStartReading(context: Context): Boolean = preferredInstalled(context) != null ||
+        installedPackages(context).any(::isSherpaOnnx) ||
         (context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY_ENGINE, null) == GOOGLE_PACKAGE &&
             GOOGLE_PACKAGE in installedPackages(context))
 
@@ -78,6 +83,7 @@ object TtsEngines {
 
         val chosen = prefs.getString(KEY_ENGINE, null)
         return installed.firstOrNull { it.packageName == chosen }
+            ?: installed.firstOrNull { isSherpaOnnx(it.packageName) }
             ?: recommended.firstNotNullOfOrNull { r -> installed.firstOrNull { it.packageName == r.packageName } }
             ?: installed.first()
     }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="browse_library_folder">فتح مجلد المكتبة</string>
+    <string name="browse_library_unavailable">تعذر فتح المجلد. تحقّق من الإذن أو افتحه باستخدام مدير الملفات على هاتفك.</string>
     <string name="channel_name">التشغيل</string>
 
     <string name="setup_title">ثبّت محرك صوت</string>
-    <string name="why_open_source">لماذا محرك صوت منفصل؟ صُنع CuevaReader باستخدام برمجيات حرة ومفتوحة المصدر فقط. نحن نؤمن بحرية البرمجيات: يمكنك استخدام كل جزء منه ودراسته ومشاركته وتحسينه، ولا يدفع أحد أي رسوم أو تراخيص لأحد. يمكن صنع كثير من التطبيقات بهذه الطريقة بجهد قليل، لكن معظمها لا يفعل. نأمل أن يشجعك هذا على تفضيل البدائل المفتوحة وصنعها أيضًا.</string>
+    <string name="why_open_source">يطوّر مجتمع البرمجيات الحرة الأصوات الحرة، وتُوزّع بشكل منفصل.\n\nصُنع CuevaReader أيضًا باستخدام برمجيات حرة ومفتوحة المصدر فقط. نحن نؤمن بفوائد حرية البرمجيات: يمكنك استخدام كل جزء ودراسته ومشاركته وتحسينه، ولا يدفع أحد إتاوات أو رسوم تراخيص لأحد.\n\nيمكن تطوير كثير من التطبيقات بهذه الطريقة بجهد قليل، لكن معظمها لا يُطوّر هكذا. نأمل أن يشجعك هذا على إنشاء بدائل مفتوحة المصدر وتفضيل استخدامها.</string>
     <string name="setup_intro">يقرأ CuevaReader الكتب بصوت عالٍ باستخدام محرك حر ومفتوح المصدر لتحويل النص إلى كلام. هذا المحرك غير مضمّن في التطبيق، لذا يُرجى تثبيت أحد هذه المحركات أولًا:</string>
     <string name="download">تنزيل</string>
     <string name="install_steps_title">طريقة التثبيت</string>
@@ -15,13 +17,13 @@
     <string name="setup_guide">دليل إضافة الأصوات</string>
 
     <string name="open_epub">فتح كتاب</string>
-    <string name="conversion_busy">جارٍ التحويل إلى EPUB…</string>
-    <string name="conversion_hint">EPUB · PDF/DOCX → EPUB\nنص فقط: دون صور أو تخطيط أصلي أو OCR.</string>
-    <string name="conversion_saved">تم حفظ EPUB نصي. لا يشمل صفحات PDF التي تحتوي على صور فقط. لم يتغير الملف الأصلي.</string>
-    <string name="conversion_save_title">التحويل إلى EPUB</string>
-    <string name="conversion_save_message">اختر مكان حفظ EPUB. لحفظه بجانب الملف الأصلي، اختر مجلده. يتم الحفظ تلقائيًا في مجلد المكتبة إذا كان يسمح بالكتابة.</string>
-    <string name="conversion_failed">تعذّر تحويل المستند أو حفظه: %1$s</string>
-    <string name="conversion_no_pdf_text">لا يحتوي هذا PDF على نص قابل للاستخراج. تحتاج الملفات الممسوحة ضوئيًا إلى OCR، وهو غير مضمّن. في الملفات المختلطة تُحوّل الصفحات النصية فقط.</string>
+    <string name="conversion_busy">جارٍ تجهيز المستند…</string>
+    <string name="conversion_hint">EPUB · استخراج نص PDF وDOCX\nتُقرأ ملفات PDF وDOCX مباشرةً، دون إنشاء ملف EPUB. نص فقط: دون صور أو تخطيط أصلي أو OCR.</string>
+    <string name="conversion_saved">تم حفظ المستند. لم يتغير الملف الأصلي.</string>
+    <string name="conversion_save_title">حفظ المستند</string>
+    <string name="conversion_save_message">اختر مكان حفظ المستند. لحفظه بجانب الملف الأصلي، اختر مجلده. يتم الحفظ تلقائيًا في مجلد المكتبة إذا كان يسمح بالكتابة.</string>
+    <string name="conversion_failed">تعذّر تجهيز المستند أو حفظه: %1$s</string>
+    <string name="conversion_no_pdf_text">لا يحتوي هذا PDF على نص قابل للاستخراج. تحتاج الملفات الممسوحة ضوئيًا إلى OCR، وهو غير مضمّن. في الملفات المختلطة يمكن قراءة الصفحات ذات النص القابل للاستخراج فقط.</string>
     <string name="conversion_pdf_restricted">لا يسمح هذا PDF باستخراج النص.</string>
     <string name="conversion_too_large">يُسمح بملفات حتى 100 ميغابايت وPDF حتى 500 صفحة ونص DOCX حتى 20 ميغابايت.</string>
     <string name="conversion_cannot_read">تعذّرت قراءة الملف الأصلي.</string>
@@ -32,9 +34,9 @@
     <string name="library">المكتبة</string>
     <string name="get_books_button">كيف أحصل على الكتب؟</string>
     <string name="get_books_title">كتب مجانية للجميع</string>
-    <string name="get_books_message">توفر مشاريع مثل Project Gutenberg وويكي مصدر كتبًا مجانية للقراءة. تحقّق دائمًا من حقوق الاستخدام في بلدك.\n\nيفتح الزر أدناه موقع Arabic Collections Online، الذي يتيح الوصول المجاني إلى كتب عربية مرقمنة. تتوفر الكتب فيه عادةً بصيغة PDF أو صور صفحات. يمكن تحويل PDF النصي إلى EPUB، لكن الكتب الممسوحة ضوئيًا تحتاج إلى OCR غير مضمّن في CuevaReader.\n\nنزّل كتابًا بصيغة EPUB أو PDF نصي وافتحه باستخدام CuevaReader. يمكنك أيضًا وضعه في مجلد مكتبتك وفتحه من اللوحة.</string>
+    <string name="get_books_message">يمكنك العثور على كتب مجانية ضمن الملكية العامة أو منشورة بإذن مؤلفيها. تحقّق من حقوق الاستخدام في بلدك. يتيح CuevaReader قراءة كتب EPUB أو ملفات PDF وDOCX ذات النص القابل للاستخراج والاستماع إليها.\n\nلإضافة كتاب:\n1. نزّله بصيغة EPUB أو PDF أو DOCX. ستجده عادةً في مجلد التنزيلات.\n2. افتح الملف واختر CuevaReader. يمكنك أيضًا اختياره عبر زر فتح كتاب داخل التطبيق.\n3. إذا فتحته من تطبيق آخر وكان لديك مجلد مكتبة مُعدّ مع إذن الكتابة، فسيعرض CuevaReader نقله إليه. إذا لم يسمح Android بحذف الأصل، فسيحفظ نسخة. يمكنك بعد ذلك العثور عليه في المكتبة.\n\nتُقرأ ملفات PDF وDOCX مباشرةً باستخراج نصها، دون تحويلها إلى EPUB أو حفظ ملف EPUB. لا يشمل ذلك الصور أو التعرّف على النص (OCR) للصفحات الممسوحة ضوئيًا.\n\nملفات MOBI وAZW غير مدعومة. يمكنك تحويل الملفات غير المحمية بإدارة الحقوق الرقمية (DRM) إلى EPUB باستخدام Calibre على جهاز كمبيوتر. نزّل Calibre: https://calibre-ebook.com/download</string>
     <string name="get_books_link">كتب الآن!</string>
-    <string name="get_books_url">https://aco.dlib.nyu.edu/</string>
+    <string name="get_books_url" formatted="false">https://z-lib.sk/s/?e=1&amp;yearFrom=2026&amp;languages%5B%5D=arabic&amp;extensions%5B%5D=EPUB&amp;selected_content_types%5B%5D=book</string>
     <string name="get_books_hidden">إذا كان الشراء لا يعني التملّك، فالقرصنة ليست سرقة.\nمن فضلك، قرصن كتبك.</string>
     <string name="close">إغلاق</string>
     <string name="choose_folder">إنشاء مجلد المكتبة أو اختياره</string>
@@ -69,6 +71,7 @@
     <string name="error_engine_start">تعذّر تشغيل %1$s. افتحه مرة واحدة لإكمال إعداده.</string>
     <string name="error_open_book">تعذّر فتح الكتاب: %1$s</string>
     <string name="error_no_text">لم يتم العثور على نص قابل للقراءة في ملف EPUB هذا</string>
+    <string name="error_no_docx_text">لم يتم العثور على نص قابل للقراءة في ملف DOCX هذا</string>
     <string name="untitled">بدون عنوان</string>
     <string name="chapter_number">الفصل %1$d</string>
     <string name="section">قسم</string>

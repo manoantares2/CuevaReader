@@ -7,9 +7,6 @@ import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
-import com.tom_roush.pdfbox.pdmodel.PDDocument
-import com.tom_roush.pdfbox.text.PDFTextStripper
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,7 +50,7 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
         mutableState.value = State.Busy
         viewModelScope.launch {
             try {
-                mutableState.value = withContext(Dispatchers.IO) { import(uri) }
+                mutableState.value = State.Done(uri, false)
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
@@ -106,8 +103,8 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
         val mime = context.contentResolver.getType(uri)
         val isPdf = mime == "application/pdf" || name.endsWith(".pdf", true)
         val isDocx = mime == DOCX_MIME || name.endsWith(".docx", true)
-        if (!isPdf && !isDocx) return State.Done(uri, false)
-        val source = File.createTempFile("source-", if (isPdf) ".pdf" else ".docx", context.cacheDir)
+        if (isPdf || !isDocx) return State.Done(uri, false)
+        val source = File.createTempFile("source-", ".docx", context.cacheDir)
         val result = File.createTempFile("converted-", ".epub", context.cacheDir)
         try {
             context.contentResolver.openInputStream(uri)?.use { input ->
@@ -123,9 +120,9 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                     }
                 }
             } ?: error(context.getString(R.string.conversion_cannot_read))
-            val sections = if (isPdf) readPdf(source) else EpubWriter.readDocx(source)
+            val sections = EpubWriter.readDocx(source)
             require(sections.any { it.paragraphs.any(String::isNotBlank) }) {
-                context.getString(if (isPdf) R.string.conversion_no_pdf_text else R.string.error_no_text)
+                context.getString(R.string.error_no_text)
             }
             val title = name.substringBeforeLast('.').ifBlank { context.getString(R.string.untitled) }
             EpubWriter.write(result, title, "und", sections)
@@ -170,31 +167,7 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    internal fun readPdf(file: File): List<ConvertedSection> {
-        PDFBoxResourceLoader.init(context)
-        return PDDocument.load(file).use { document ->
-            require(document.currentAccessPermission.canExtractContent()) { context.getString(R.string.conversion_pdf_restricted) }
-            require(document.numberOfPages <= 500) { context.getString(R.string.conversion_too_large) }
-            val stripper = PDFTextStripper().apply { sortByPosition = true }
-            buildList {
-                var extracted = 0L
-                for (page in 1..document.numberOfPages) {
-                    stripper.startPage = page
-                    stripper.endPage = page
-                    val text = stripper.getText(document)
-                    extracted += text.length
-                    require(extracted <= 20 * 1024 * 1024L) { context.getString(R.string.conversion_too_large) }
-                    val paragraphs = cleanPdfPage(text)
-                        .split(Regex("\n\\s*\n"))
-                        .map { it.replace(Regex("(?<=\\S)\n(?=\\S)"), " ").trim() }
-                        .filter(String::isNotBlank)
-                    if (paragraphs.isNotEmpty()) {
-                        add(ConvertedSection(context.getString(R.string.converted_page, page), paragraphs, showHeading = false))
-                    }
-                }
-            }
-        }
-    }
+    internal fun readPdf(file: File): List<ConvertedSection> = PdfReader.readSections(context, file)
 
     private fun displayName(uri: Uri): String {
         if (uri.scheme == "content") {

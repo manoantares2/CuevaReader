@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_grandfather_es">爷爷的声音 - 西班牙语</string>
+    <string name="voice_man_es">男声 - 西班牙语</string>
+    <string name="voice_woman_es">女声 - 西班牙语</string>
+    <string name="voice_arm64_only">这些语音应用需要 ARM64 手机。安装后，返回 CuevaReader 并在“更换语音”中选择语音。</string>
+    <string name="voice_arm64_unavailable">这些下载不兼容此设备。请通过帮助页面获取 SherpaTTS。</string>
+    <string name="voice_direct_help">如果想使用手机 Google 语音以外的声音，需要下载独立的语音引擎。上方链接会安装这些引擎，它们相当于独立应用。\n\n如果想探索更多语音，我们推荐 SherpaTTS。\n\n1. 从 https://f-droid.org/ 下载 F-Droid 并安装其 APK。如果 Android 提示，请允许浏览器安装未知应用。\n2. 打开 F-Droid，等待应用目录更新。\n3. 搜索并安装 SherpaTTS（org.woheller69.ttsengine）：https://f-droid.org/packages/org.woheller69.ttsengine/\n4. 打开 SherpaTTS，为你的语言下载语音，然后返回 CuevaReader。在“更换语音”中选择它。</string>
+    <string name="voice_install_fdroid">安装 F-Droid</string>
+    <string name="voice_install_sherpa">获取 SherpaTTS</string>
+</resources>

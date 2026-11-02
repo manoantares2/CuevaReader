@@ -1,0 +1,7 @@
+Daniela voice preview
+Original text: Hola. Soy Daniela. Puedo leer contigo y darle voz a tus libros. Ponte a gusto, cierra los ojos y deja que cada historia te lleve a un lugar diferente.
+Generated locally with sherpa-onnx TTS Engine 1.13.8, model vits-piper-es_AR-daniela-high, speed 1.0, single speaker.
+Source APK: https://huggingface.co/csukuangfj2/sherpa-onnx-apk/resolve/main/tts-engine-new/1.13.8/sherpa-onnx-1.13.8-arm64-v8a-spa-tts-engine-vits-piper-es_AR-daniela-high.apk
+Model card credits training to https://huggingface.co/larcanio/piper-voices and dataset https://www.openslr.org/61/ under Creative Commons Attribution-ShareAlike 4.0 International: https://creativecommons.org/licenses/by-sa/4.0/
+Audio changes: converted generated mono 22050 Hz PCM WAV to AAC/M4A at 64 kbps.
+Preview distributed under CC BY-SA 4.0; this attribution does not imply endorsement. Model-card dataset licensing is not a blanket license for the engine or all voice models.

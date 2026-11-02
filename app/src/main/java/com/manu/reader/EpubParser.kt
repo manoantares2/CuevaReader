@@ -149,7 +149,7 @@ object EpubParser {
     }
 
     // TTS engines limit input length, so long paragraphs are split on sentence boundaries.
-    private fun split(text: String): List<String> {
+    internal fun split(text: String): List<String> {
         if (text.length <= MAX_CHUNK) return listOf(text)
         val chunks = mutableListOf<String>()
         val current = StringBuilder()

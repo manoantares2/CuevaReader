@@ -36,7 +36,7 @@ object EpubWriter {
         var title = ""
         val paragraphs = mutableListOf<String>()
         fun flush() {
-            if (paragraphs.isNotEmpty()) sections += ConvertedSection(title, paragraphs.toList())
+            if (title.isNotBlank() || paragraphs.isNotEmpty()) sections += ConvertedSection(title, paragraphs.toList())
             paragraphs.clear()
         }
         for (p in xml.getElementsByTag("w:p")) {

@@ -1,6 +1,7 @@
 package com.manu.reader
 
 import android.app.Application
+import android.net.Uri
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.pdmodel.PDPage
@@ -37,6 +38,17 @@ class PdfConversionTest {
             val sections = ImportViewModel(application).readPdf(file)
             assertEquals(1, sections.size)
             assertTrue(sections.single().paragraphs.joinToString(" ").contains("A readable PDF for CuevaReader."))
+            val before = file.readBytes()
+            val cacheBefore = application.cacheDir.listFiles().orEmpty().map { it.name }.toSet()
+            val uri = Uri.fromFile(file)
+            assertTrue(PdfReader.isPdf(application, uri))
+            val book = PdfReader.parse(application, uri)
+            assertEquals(1, book.chapters.size)
+            assertEquals(0, book.chapters.single().start)
+            assertEquals("A readable PDF for CuevaReader.", book.paragraphs.single())
+            assertArrayEquals(before, file.readBytes())
+            assertEquals(cacheBefore, application.cacheDir.listFiles().orEmpty().map { it.name }.toSet())
+            assertEquals(book.paragraphs, PdfReader.parse(application, uri).paragraphs)
         } finally { file.delete() }
     }
 
@@ -50,6 +62,12 @@ class PdfConversionTest {
                 it.save(file)
             }
             assertTrue(ImportViewModel(application).readPdf(file).isEmpty())
+            try {
+                PdfReader.parse(application, Uri.fromFile(file))
+                fail("Image-only/blank PDF must report missing text")
+            } catch (_: IllegalArgumentException) {
+                assertTrue(file.exists())
+            }
         } finally { file.delete() }
     }
 }

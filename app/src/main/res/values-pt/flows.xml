@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sleep_timer_title">Temporizador de sono</string>
+    <string name="sleep_timer_intro">Vou parar de ler em voz alta em</string>
+    <string name="sleep_timer_minutes">%1$d min</string>
+    <string name="sleep_timer_info">Um adulto costuma levar cerca de 15–20 minutos para adormecer, embora isso varie de pessoa para pessoa.</string>
+    <string name="sleep_timer_start">Programar</string>
+    <string name="sleep_timer_cancel">Cancelar temporizador</string>
+    <string name="sleep_timer_active">Temporizador de sono ativo</string>
     <string name="library_move_title">Mover para sua biblioteca?</string>
-    <string name="library_move_message">Mover este arquivo para %1$s? Se o Android não permitir excluir o original, uma cópia será salva. PDF e DOCX continuarão sendo convertidos para EPUB para leitura.</string>
+    <string name="library_move_message">Mover este arquivo para %1$s? Se o Android não permitir excluir o original, uma cópia será salva. Os arquivos PDF e DOCX são lidos diretamente pela extração do texto, sem convertê-los para EPUB nem salvar um EPUB.</string>
     <string name="library_move_accept">Mover para a biblioteca</string>
     <string name="library_move_skip">Abrir sem mover</string>
     <string name="library_move_done">Arquivo movido para sua biblioteca.</string>
@@ -23,7 +30,7 @@
     <string name="flow_check_voice">3 · Verificar instalação</string>
     <string name="flow_other_voices">Outras vozes</string>
     <string name="flow_need_help">Preciso de ajuda</string>
-    <string name="flow_why_free">Por que instalar um mecanismo separado?</string>
+    <string name="flow_why_free">Por que instalar um mecanismo de voz separado?</string>
     <string name="flow_library_title">Um lugar para seus livros</string>
     <string name="flow_library_intro">Escolha uma pasta para encontrar seus livros aqui. Você pode criar uma chamada Reader.</string>
     <string name="flow_books_title">Leituras grátis</string>
