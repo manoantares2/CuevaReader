@@ -1,0 +1,5 @@
+<resources>
+    <string name="update_title">Nueva versión disponible</string>
+    <string name="update_message">La versión %1$s está disponible en GitHub. Descarga el APK y después confirma la instalación en Android. Esta es una compilación de QA para pruebas.</string>
+    <string name="update_download">Descargar APK</string>
+</resources>

@@ -93,6 +93,27 @@ class ReaderService : Service() {
     private var lastQueued = -1
 
     private val prefs by lazy { getSharedPreferences("reader", MODE_PRIVATE) }
+    val voicePitch: Float
+        get() = prefs.getFloat("voice_pitch", 1f).coerceIn(0.5f, 2f)
+    val voiceSpeed: Float
+        get() = prefs.getFloat("voice_speed", 1f).coerceIn(0.5f, 2f)
+
+    fun setVoiceSettings(pitch: Float, speed: Float): Boolean {
+        require(pitch.isFinite() && pitch in 0.5f..2f)
+        require(speed.isFinite() && speed in 0.5f..2f)
+        if (!ttsReady || tts?.setPitch(pitch) != TextToSpeech.SUCCESS) return false
+        if (tts?.setSpeechRate(speed) != TextToSpeech.SUCCESS) {
+            tts?.setPitch(voicePitch)
+            return false
+        }
+        prefs.edit {
+            putFloat("voice_pitch", pitch)
+            putFloat("voice_speed", speed)
+        }
+        // Flush buffered speech so the new pitch also applies to the current paragraph.
+        if (_state.value.playing) play()
+        return true
+    }
 
     private val noisyReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -209,6 +230,8 @@ class ReaderService : Service() {
                         .build()
                 )
                 tts?.setOnUtteranceProgressListener(utteranceListener)
+                tts?.setPitch(voicePitch)
+                tts?.setSpeechRate(voiceSpeed)
                 if (playWhenReady) play()
             } else {
                 _state.update { it.copy(error = getString(R.string.error_engine_start, engine.label)) }

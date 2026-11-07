@@ -1,0 +1,14 @@
+<resources>
+    <string name="voice_speed_value">语速：%1$.1f×</string>
+    <string name="voice_speed_label">语速</string>
+    <string name="voice_settings_title">CuevaReader 语音设置</string>
+    <string name="voice_settings_hint">音调数值越低，声音越低沉；数值越高，声音越尖细。语速会改变朗读速度。这些设置仅保存在 CuevaReader 中，不会更改手机设置。部分引擎会忽略这些设置。朗读时应用这些设置会从当前段落开头重新播放。</string>
+    <string name="voice_settings_reset">正常值</string>
+    <string name="voice_settings_unavailable">引擎尚未就绪或不支持这些设置。</string>
+    <string name="voice_pitch_title">CuevaReader 音调设置</string>
+    <string name="voice_pitch_value">音调：%1$.1f×</string>
+    <string name="voice_pitch_hint">数值越低，声音越低沉；数值越高，声音越尖细。仅影响 CuevaReader。部分引擎会忽略音调设置。朗读时应用此设置会从当前段落开头重新播放。</string>
+    <string name="voice_pitch_apply">应用</string>
+    <string name="voice_pitch_reset">正常音调</string>
+    <string name="voice_pitch_unavailable">引擎尚未就绪或不支持此音调。</string>
+</resources>

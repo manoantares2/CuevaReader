@@ -1,0 +1,5 @@
+<resources>
+    <string name="update_title">إصدار جديد متاح</string>
+    <string name="update_message">الإصدار %1$s متاح على GitHub. نزّل ملف APK، ثم أكّد التثبيت في Android. هذه نسخة لضمان الجودة (QA) مخصصة للاختبار.</string>
+    <string name="update_download">تنزيل APK</string>
+</resources>

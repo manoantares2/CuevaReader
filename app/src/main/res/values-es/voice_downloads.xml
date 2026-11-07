@@ -3,8 +3,13 @@
     <string name="voice_grandfather_es">Voz de abuelo - español</string>
     <string name="voice_man_es">Voz de hombre - español</string>
     <string name="voice_woman_es">Voz de mujer - español</string>
+    <string name="voice_amy_en">Voz de Amy - inglés de Estados Unidos (medium)</string>
+    <string name="voice_cadu_pt_br">Voz de Cadu - portugués de Brasil (medium)</string>
+    <string name="voice_kareem_ar_jo">Voz de Kareem - árabe de Jordania (medium)</string>
+    <string name="voice_xiao_ya_zh_cn">Voz de Xiao Ya - chino mandarín (medium)</string>
     <string name="voice_arm64_only">Estas apps de voz requieren un teléfono ARM64. Tras instalarlas, vuelve a CuevaReader y elige la voz en Cambiar voz.</string>
     <string name="voice_arm64_unavailable">Estas descargas no son compatibles con este dispositivo. Usa SherpaTTS desde la sección de ayuda.</string>
+    <string name="voice_direct_replacement">Estas voces usan la misma aplicación de Android. Al instalar otra, se reemplazará la voz directa actual; con este método solo se puede instalar una a la vez.</string>
     <string name="voice_direct_help">Para escuchar con otra voz diferente a la de tu teléfono, proporcionada por Google, tienes que descargar un motor de voz separado. Para eso son los enlaces de arriba y funcionan un poco como una app aparte.\n\nSi quieres buscar una voz diferente, también necesitas instalar otra app. Te recomendamos SherpaTTS.\n\n1. Descarga F-Droid desde https://f-droid.org/ e instala su APK. Si Android lo pide, permite a tu navegador instalar aplicaciones desconocidas.\n2. Abre F-Droid y espera a que se actualice el catálogo.\n3. Busca SherpaTTS, de org.woheller69.ttsengine, e instálalo: https://f-droid.org/packages/org.woheller69.ttsengine/\n4. Abre SherpaTTS, descarga una voz para tu idioma y vuelve a CuevaReader. Elígela en Cambiar voz.</string>
     <string name="voice_install_fdroid">Instalar F-Droid</string>
     <string name="voice_install_sherpa">Obtener SherpaTTS</string>

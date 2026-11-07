@@ -1,0 +1,5 @@
+<resources>
+    <string name="update_title">有新版本可用</string>
+    <string name="update_message">GitHub 上已发布版本 %1$s。请下载 APK，然后在 Android 中确认安装。这是用于测试的 QA 构建版本。</string>
+    <string name="update_download">下载 APK</string>
+</resources>
