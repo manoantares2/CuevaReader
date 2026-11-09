@@ -1,0 +1,14 @@
+<resources>
+    <string name="voice_speed_value">Velocidad: %1$.1f×</string>
+    <string name="voice_speed_label">Velocidad</string>
+    <string name="voice_settings_title">Ajustes de voz en CuevaReader</string>
+    <string name="voice_settings_hint">Un tono menor produce una voz más grave y uno mayor, más aguda. La velocidad cambia el ritmo de lectura. Los ajustes se guardan solo en CuevaReader, no en los ajustes del teléfono. Algunos motores ignoran estos ajustes. Al aplicarlos durante la lectura, se reinicia el párrafo actual.</string>
+    <string name="voice_settings_reset">Valores normales</string>
+    <string name="voice_settings_unavailable">El motor no está listo o no admite estos ajustes.</string>
+    <string name="voice_pitch_title">Tono de voz en CuevaReader</string>
+    <string name="voice_pitch_value">Tono: %1$.1f×</string>
+    <string name="voice_pitch_hint">Un valor menor produce un tono más grave y uno mayor, más agudo. Solo afecta a CuevaReader. Algunos motores ignoran el tono. Al aplicarlo durante la lectura, se reinicia el párrafo actual.</string>
+    <string name="voice_pitch_apply">Aplicar</string>
+    <string name="voice_pitch_reset">Tono normal</string>
+    <string name="voice_pitch_unavailable">El motor no está listo o no admite este tono.</string>
+</resources>

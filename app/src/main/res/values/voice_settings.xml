@@ -1,0 +1,14 @@
+<resources>
+    <string name="voice_speed_value">Speed: %1$.1f×</string>
+    <string name="voice_speed_label">Speed</string>
+    <string name="voice_settings_title">Voice settings in CuevaReader</string>
+    <string name="voice_settings_hint">Lower pitch values make the voice deeper; higher values make it higher. Speed changes the reading rate. Settings are saved only in CuevaReader, not in your phone settings. Some engines ignore these settings. Applying while reading restarts the current paragraph.</string>
+    <string name="voice_settings_reset">Normal values</string>
+    <string name="voice_settings_unavailable">The engine is not ready or does not accept these settings.</string>
+    <string name="voice_pitch_title">Voice pitch in CuevaReader</string>
+    <string name="voice_pitch_value">Pitch: %1$.1f×</string>
+    <string name="voice_pitch_hint">Lower values sound deeper; higher values sound higher. Only affects CuevaReader. Some engines ignore pitch. Applying while reading restarts the current paragraph.</string>
+    <string name="voice_pitch_apply">Apply</string>
+    <string name="voice_pitch_reset">Normal pitch</string>
+    <string name="voice_pitch_unavailable">The engine is not ready or does not accept this pitch.</string>
+</resources>

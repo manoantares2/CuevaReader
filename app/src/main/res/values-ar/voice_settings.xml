@@ -1,0 +1,14 @@
+<resources>
+    <string name="voice_speed_value">السرعة: %1$.1f×</string>
+    <string name="voice_speed_label">السرعة</string>
+    <string name="voice_settings_title">إعدادات الصوت في CuevaReader</string>
+    <string name="voice_settings_hint">القيم الأقل لحدة الصوت تجعله أغلظ، والقيم الأعلى تجعله أحدّ. تغيّر السرعة معدل القراءة. تُحفظ الإعدادات في CuevaReader فقط، وليس في إعدادات الهاتف. بعض المحركات تتجاهل هذه الإعدادات. تطبيقها أثناء القراءة يعيد الفقرة الحالية من بدايتها.</string>
+    <string name="voice_settings_reset">القيم العادية</string>
+    <string name="voice_settings_unavailable">المحرك غير جاهز أو لا يقبل هذه الإعدادات.</string>
+    <string name="voice_pitch_title">حدة الصوت في CuevaReader</string>
+    <string name="voice_pitch_value">حدة الصوت: %1$.1f×</string>
+    <string name="voice_pitch_hint">القيم الأقل تجعل الصوت أغلظ، والأعلى تجعله أحدّ. يؤثر ذلك على CuevaReader فقط. بعض المحركات تتجاهل هذا الإعداد. تطبيقه أثناء القراءة يعيد الفقرة الحالية من بدايتها.</string>
+    <string name="voice_pitch_apply">تطبيق</string>
+    <string name="voice_pitch_reset">الحدة العادية</string>
+    <string name="voice_pitch_unavailable">المحرك غير جاهز أو لا يقبل حدة الصوت هذه.</string>
+</resources>

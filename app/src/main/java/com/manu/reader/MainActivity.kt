@@ -325,6 +325,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refreshEngineState()
+        checkForUpdates()
     }
 
     override fun onStop() {
@@ -367,8 +368,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindSetupGuide(view: View, onSetupComplete: () -> Unit = {}) {
-        val directSpanish = resources.configuration.locales[0].language == "es"
-        if (directSpanish) {
+        val language = resources.configuration.locales[0].language
+        val directVoices = DirectVoices.forLanguage(language)
+        val hasDirectVoices = directVoices != null
+        if (hasDirectVoices) {
             for (id in listOf(R.id.recommendedEngine, R.id.sherpaRequirement, R.id.installVoice,
                 R.id.openVoiceEngine, R.id.checkAgain, R.id.otherVoices)) {
                 view.findViewById<View>(id).isVisible = false
@@ -376,7 +379,7 @@ class MainActivity : AppCompatActivity() {
             view.findViewById<LinearLayout>(R.id.directVoices).apply {
                 isVisible = true
                 val arm64 = "arm64-v8a" in Build.SUPPORTED_ABIS
-                DirectVoices.spanish.forEach { voice ->
+                directVoices.orEmpty().forEach { voice ->
                     addView(Button(this@MainActivity).apply {
                         setText(voice.label)
                         isEnabled = arm64
@@ -384,7 +387,7 @@ class MainActivity : AppCompatActivity() {
                     })
                 }
                 addView(TextView(this@MainActivity).apply {
-                    setText(if (arm64) R.string.voice_arm64_only else R.string.voice_arm64_unavailable)
+                    setText(if (arm64) R.string.voice_direct_replacement else R.string.voice_arm64_unavailable)
                     gravity = android.view.Gravity.CENTER
                 })
             }
@@ -411,7 +414,7 @@ class MainActivity : AppCompatActivity() {
             engineList.isVisible = !engineList.isVisible
         }
         view.findViewById<Button>(R.id.voiceHelp).setOnClickListener {
-            if (directSpanish) showDirectVoiceHelp()
+            if (hasDirectVoices) showDirectVoiceHelp()
             else showTextHelp(R.string.flow_need_help, R.string.install_steps)
         }
         view.findViewById<Button>(R.id.softwareFreedom).setOnClickListener {
@@ -757,6 +760,107 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private var updateCheckRunning = false
+    private var pendingUpdate: AppUpdate? = null
+    private var updateDialog: AlertDialog? = null
+
+    private fun checkForUpdates() {
+        if (updateDialog != null || updateCheckRunning) return
+        fun offer(update: AppUpdate) {
+            updateDialog = MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.update_title)
+                .setMessage(getString(R.string.update_message, update.version))
+                .setPositiveButton(R.string.update_download) { _, _ -> openUrl(update.apkUrl) }
+                .setNegativeButton(R.string.later, null)
+                .create().also { dialog ->
+                    dialog.setOnDismissListener {
+                        pendingUpdate = null
+                        updateDialog = null
+                    }
+                    dialog.show()
+                }
+        }
+        pendingUpdate?.let { offer(it); return }
+        val preferences = getSharedPreferences("updates", MODE_PRIVATE)
+        val now = System.currentTimeMillis()
+        val previous = preferences.getLong("last_check", 0)
+        if (now >= previous && now - previous < 24 * 60 * 60 * 1000L) return
+        preferences.edit { putLong("last_check", now) }
+        updateCheckRunning = true
+        lifecycleScope.launch {
+            try {
+                val current = packageManager.getPackageInfo(packageName, 0).versionName ?: return@launch
+                val update = withContext(Dispatchers.IO) { runCatching { AppUpdates.fetch(current) }.getOrNull() }
+                if (update != null) {
+                    pendingUpdate = update
+                    if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) offer(update)
+                }
+            } finally {
+                updateCheckRunning = false
+            }
+        }
+    }
+
+    private fun showVoicePitch() {
+        val reader = service ?: return
+        var pitch = reader.voicePitch
+        var speed = reader.voiceSpeed
+        val label = TextView(this).apply {
+            gravity = android.view.Gravity.CENTER
+            text = getString(R.string.voice_pitch_value, pitch)
+        }
+        val slider = com.google.android.material.slider.Slider(this).apply {
+            valueFrom = 0.5f
+            valueTo = 2f
+            stepSize = 0.1f
+            value = (kotlin.math.round(pitch * 10) / 10).coerceIn(valueFrom, valueTo)
+            contentDescription = getString(R.string.voice_pitch_title)
+            addOnChangeListener { _, value, _ ->
+                pitch = value
+                label.text = getString(R.string.voice_pitch_value, value)
+            }
+        }
+        val content = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            val padding = (24 * resources.displayMetrics.density).toInt()
+            setPadding(padding, 0, padding, 0)
+            addView(label)
+            addView(slider)
+            val speedLabel = TextView(this@MainActivity).apply {
+                gravity = android.view.Gravity.CENTER
+                text = getString(R.string.voice_speed_value, speed)
+            }
+            addView(speedLabel)
+            addView(com.google.android.material.slider.Slider(this@MainActivity).apply {
+                valueFrom = 0.5f
+                valueTo = 2f
+                stepSize = 0.1f
+                value = (kotlin.math.round(speed * 10) / 10).coerceIn(valueFrom, valueTo)
+                contentDescription = getString(R.string.voice_speed_label)
+                addOnChangeListener { _, value, _ ->
+                    speed = value
+                    speedLabel.text = getString(R.string.voice_speed_value, value)
+                }
+            })
+            addView(TextView(this@MainActivity).apply {
+                setText(R.string.voice_settings_hint)
+                gravity = android.view.Gravity.CENTER
+            })
+        }
+        fun applySettings(pitchValue: Float, speedValue: Float) {
+            if (!reader.setVoiceSettings(pitchValue, speedValue)) {
+                Toast.makeText(this, R.string.voice_settings_unavailable, Toast.LENGTH_LONG).show()
+            }
+        }
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.voice_settings_title)
+            .setView(content)
+            .setPositiveButton(R.string.voice_pitch_apply) { _, _ -> applySettings(pitch, speed) }
+            .setNeutralButton(R.string.voice_settings_reset) { _, _ -> applySettings(1f, 1f) }
+            .setNegativeButton(R.string.close, null)
+            .show()
+    }
+
     private fun showEngines() {
         val engines = TtsEngines.installedEngines(this)
         val openSource = TtsEngines.recommended.map { it.packageName }.toSet()
@@ -787,6 +891,13 @@ class MainActivity : AppCompatActivity() {
             val padding = (16 * resources.displayMetrics.density).toInt()
             setPadding(padding, 0, padding, 0)
             addView(choices)
+            addView(Button(this@MainActivity).apply {
+                text = getString(R.string.voice_settings_title)
+                setOnClickListener {
+                    dialog.dismiss()
+                    showVoicePitch()
+                }
+            })
             addView(Button(this@MainActivity).apply {
                 text = getString(R.string.setup_guide)
                 setOnClickListener {
